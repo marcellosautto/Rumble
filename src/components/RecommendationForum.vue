@@ -1,21 +1,35 @@
 <template>
-  <div id="rec__forum">
-    <label for="name">Name: </label>
+  <div class="rec__forum">
+
+    <div class="rf_input">
+      <label for="name">Name </label> <br />
     <input type="text" v-model="name" placeholder="Ex. Olive Garden" /> <br />
-    <label for="rating">Rating: </label>
+    </div>
+    <div class="rf_input">
+      <label for="rating">Rating </label><br />
     <input type="text" v-model="rating" placeholder="Ex. 5/5" /><br />
-    <label for="origins">Origin: </label>
+    </div>
+    <div class="rf_input">
+       <label for="origins">Origin </label><br />
     <input type="text" v-model="origins" placeholder="Ex. Italian" /><br />
-    <label for="cost">Cost: </label>
+    </div>
+    <div class="rf_input">
+      <label for="cost">Cost </label><br />
     <input type="text" v-model="cost" placeholder="Ex. $$" /><br />
-    <label for="location">Location: </label>
+    </div>
+    <div class="rf_input">
+      <label for="location">Location </label><br />
     <input
       type="text"
       v-model="location"
       placeholder="Ex. Thousand Oaks"
     /><br />
-    <label for="service">Service: </label>
-    <input type="text" v-model="service" placeholder="Resturant" /><br />
+    </div>
+    <div class="rf_input">
+      <label for="service">Service </label><br />
+    <input type="text" v-model="service" placeholder="Ex. Resturant" /><br />
+    </div>    
+    
   </div>
 </template>
 
@@ -27,11 +41,31 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-#rec__forum{
-    font-family: 'Varela Round', sans-serif;
-    text-align: center;
-    align-content: space-between;
+.rec__forum{
+    display: grid;
+    align-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    font-family: 'Staatliches', cursive;
+    margin-top: 10px;
     
+}
+
+.rf_input{
+padding: 5px;
+background-color: azure;
+box-shadow: 5px 10px #5a5a5a49;
+margin: 5px;
+text-align: center;
+font-size: 1.3em;
+
+}
+
+input {
+border: 1px rgb(190, 190, 190) solid;
+border-radius: 3px;
+
 }
 
 

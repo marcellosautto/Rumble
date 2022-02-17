@@ -18,7 +18,7 @@ Amplify.configure(awsconfig);
 
     <recommendation-forum />
 
-    <button v-on:click="createRecommendation">Create Recommendation</button>
+    <button id="create__rec__btn" v-on:click="createRecommendation">Create Recommendation</button>
   </div>
 </template>
 
@@ -101,12 +101,26 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Staatliches&display=swap');
 #app{
   background-color: rgb(9, 171, 192);
+  font-family: 'Bree Serif', serif;
 }
+
+#create__rec__btn{
+  border: 2px solid rgb(250, 250, 250);
+  border-radius: 5px;
+  background-color: rgb(240, 240, 240);
+  font-size: 1.3em;
+}
+
+#create__rec__btn:hover{
+  background-color: rgb(209, 209, 209);
+  cursor:pointer;
+  }
+
 .title{
   text-align: center;
-  font-family: 'Varela Round', sans-serif;
 }
+
 </style>

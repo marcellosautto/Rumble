@@ -1,24 +1,16 @@
-# rumble
+# Rumble
 
-## Project setup
-```
-npm install
-```
+## What is Rumble?
+A full-stack web application which provides a list of eateries to the user based on their priorities. For instance, if the user's top priority is low cost and fast dining, 
+the API will return a list of eateries which best fit those preferences
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### How Does Rumble Work?
+The application utilizes a machine learning model built to maximize the relevance of the recommendations
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Frameworks and APIs
+Vue.js
+GraphQL
+Babel
+AWS Amplify
+Amazon Personalize
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
