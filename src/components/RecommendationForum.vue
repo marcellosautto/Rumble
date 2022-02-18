@@ -31,11 +31,57 @@
     </div>    
     
   </div>
+
+  <button id="create__rec__btn" v-on:click="createRecommendation">Create Recommendation</button>
 </template>
 
 <script>
+
+import { API } from "aws-amplify";
+import { createRecommendation } from "../graphql/mutations.ts";
+import { listRecommendations } from "../graphql/queries.ts";
+import { onCreateRecommendation } from "../graphql/subscriptions.ts";
+
 export default {
-  name: "RecommendationForum"
+  name: "RecommendationForum",
+  methods: {
+      async createRecommendation() {
+      const { name, rating, cost, location, origins, service } = this;
+      if (!name || !rating || !cost || !location || !origins || !service)
+        return;
+      const recommendation = { name, rating, cost, location, origins, service };
+      await API.graphql({
+        query: createRecommendation,
+        variables: { input: recommendation },
+      });
+      (this.name = ""),
+        (this.rating = ""),
+        (this.cost = ""),
+        (this.location = ""),
+        (this.origins = ""),
+        (this.service = "");
+    },
+    async getRecommendations() {
+      const recommendations = await API.graphql({
+        query: listRecommendations,
+      });
+      this.recommendations = recommendations.data.listRecommendations.items;
+    },
+    subscribe() {
+      API.graphql({ query: onCreateRecommendation }).subscribe({
+        next: (eventData) => {
+          let recommendation = eventData.value.data.onCreateRecommendation;
+          if (
+            this.recommendations.some(
+              (item) => item.name === recommendation.name
+            )
+          )
+            return; // remove duplications
+          this.recommendations = [...this.recommendations, recommendation];
+        },
+      });
+    },
+  }
 };
 </script>
 
@@ -60,6 +106,20 @@ margin: 5px;
 text-align: center;
 font-size: 1.3em;
 
+}
+
+#create__rec__btn{
+  border: 2px solid rgb(250, 250, 250);
+  border-radius: 5px;
+  background-color: rgb(240, 240, 240);
+  font-size: 1.1em;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
+}
+
+#create__rec__btn:hover{
+  background-color: rgb(209, 209, 209);
+  cursor:pointer;
 }
 
 input {
