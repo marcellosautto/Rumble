@@ -6,13 +6,18 @@ import awsconfig from "./aws-exports";
 
 import Login from "./components/Login.vue";
 import RecommendationForum from "./components/RecommendationForum.vue";
+import Sidebar from "./components/Sidebar.vue";
 
 Amplify.configure(awsconfig);
+
 </script>
 
 <template>
   <div id="app">
-    <h1 class="title">Rumble</h1>
+    <Sidebar />
+    <div :style="{ 'margin-left': sidebarWidth}">
+      <router-view />
+    </div>
 
     <login />
 
@@ -26,11 +31,13 @@ Amplify.configure(awsconfig);
 
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 
+
 export default {
   name: "App",
   components: {
     Login,
-    RecommendationForum
+    RecommendationForum,
+    Sidebar,
   },
   created() {
     onAuthUIStateChange((state, user) => {
@@ -38,7 +45,6 @@ export default {
         this.user = user;
       }
     });
-    //this.getRecommendations();
   },
   data() {
     return {

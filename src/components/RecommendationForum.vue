@@ -32,7 +32,10 @@
     
   </div>
 
-  <button id="create__rec__btn" v-on:click="createRecommendation">Create Recommendation</button>
+<div class="btn__container">
+  <button class="rec__btn" v-on:click="createRecommendation">Create Recommendation</button>
+  <button class="rec__btn" v-on:click="listRecommendations">List Recommendations</button>
+  </div>
 </template>
 
 <script>
@@ -108,7 +111,7 @@ font-size: 1.3em;
 
 }
 
-#create__rec__btn{
+.rec__btn{
   border: 2px solid rgb(250, 250, 250);
   border-radius: 5px;
   background-color: rgb(240, 240, 240);
