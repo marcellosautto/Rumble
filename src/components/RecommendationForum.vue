@@ -33,8 +33,8 @@
   </div>
 
 <div class="btn__container">
-  <button class="rec__btn" v-on:click="createRecommendation">Create Recommendation</button>
-  <button class="rec__btn" v-on:click="listRecommendations">List Recommendations</button>
+  <button class="create__rec__btn" v-on:click="createRecommendation">Create Recommendation</button>
+  <button class="create__rec__btn" v-on:click="listRecommendations">List Recommendations</button>
   </div>
 </template>
 
@@ -88,7 +88,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 .rec__forum{
     display: grid;
@@ -111,16 +111,21 @@ font-size: 1.3em;
 
 }
 
-.rec__btn{
+.btn__container{
+  text-align: center;
+  margin-top: 10px;
+}
+.create__rec__btn{
   border: 2px solid rgb(250, 250, 250);
   border-radius: 5px;
   background-color: rgb(240, 240, 240);
   font-size: 1.1em;
-  transition-duration: 0.25s;
-  transition-timing-function: ease-in-out;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  margin: 0 5px 0 5px;
 }
 
-#create__rec__btn:hover{
+.create__rec__btn:hover{
   background-color: rgb(209, 209, 209);
   cursor:pointer;
 }

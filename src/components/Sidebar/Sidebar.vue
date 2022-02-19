@@ -12,10 +12,8 @@ export default {
 </script>
 
 <template>
-  <div>
     <div class="sidebar" :style="{ width: sidebarWidth }">
-
-        <h1>
+        <h1 class="title">
             <span v-if="collapsed">
                 <div>R</div>
             </span>
@@ -23,6 +21,7 @@ export default {
         </h1>
 
     <SidebarLink to="/" icon="fas fa-home">Home</SidebarLink>
+    <SidebarLink to="/About" icon="fas fa-image">About</SidebarLink>
 
       <span
         class="collapse__icon"
@@ -32,18 +31,22 @@ export default {
         <i class="fas fa-angle-double-left" />
       </span>
     </div>
-  </div>
 </template>
 
 <style>
 :root {
   --sidebar-bg-color: rgb(8, 105, 117);
-  --sidebar-item-hoder: red;
-  --sidebar-item-active: blue;
+  --sidebar-item-hover: rgb(6, 83, 94);
+  --sidebar-item-active: rgb(6, 83, 94);
 }
 </style>
 
 <style scoped>
+
+.title{
+  text-align: center;
+}
+
 .sidebar {
   color: white;
   background-color: var(--sidebar-bg-color);
@@ -60,6 +63,10 @@ export default {
 
   display: flex;
   flex-direction: column;
+}
+
+.sidebar h1{
+  height: 2.5em;
 }
 
 .collapse__icon {
