@@ -8,9 +8,9 @@ the API will return a list of eateries which best fit those preferences
 The application utilizes a machine learning model built to maximize the relevance of the recommendations
 
 ### Frameworks and APIs
-Vue.js
-GraphQL
-Babel
-AWS Amplify
-Amazon Personalize
+* Vue.js
+* GraphQL
+* Babel
+* AWS Amplify
+* Amazon Personalize
 
