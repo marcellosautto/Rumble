@@ -32,14 +32,12 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Staatliches&display=swap');
 
-*{
-  background-color: rgb(9, 171, 192);
-}
 
 #app{
   font-family: 'Bree Serif', serif;
   height: 100vh;
   padding: 0.5em;
+  background-image: linear-gradient(270deg, rgb(32, 139, 160), rgb(215, 231, 235));
 }
 .title{
   text-align: center;

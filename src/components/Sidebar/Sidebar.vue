@@ -22,6 +22,8 @@ export default {
 
     <SidebarLink to="/" icon="fas fa-home">Home</SidebarLink>
     <SidebarLink to="/About" icon="fas fa-image">About</SidebarLink>
+    <SidebarLink to="/Preferences" icon="fas fa-list-alt">Preferences</SidebarLink>
+     <SidebarLink to="/EateryList" icon="fas fa-cutlery">Eatery List</SidebarLink>
 
       <span
         class="collapse__icon"
@@ -35,9 +37,9 @@ export default {
 
 <style>
 :root {
-  --sidebar-bg-color: rgb(8, 105, 117);
-  --sidebar-item-hover: rgb(6, 83, 94);
-  --sidebar-item-active: rgb(6, 83, 94);
+  --sidebar-bg-color: rgb(11, 57, 63);
+  --sidebar-item-hover: rgba(166, 192, 197, 0.733);
+  --sidebar-item-active: rgba(115, 130, 133, 0.733);
 }
 </style>
 
@@ -45,11 +47,12 @@ export default {
 
 .title{
   text-align: center;
+  padding: 0.2em;
 }
 
 .sidebar {
   color: white;
-  background-color: var(--sidebar-bg-color);
+  background-image: linear-gradient(90deg, var(--sidebar-bg-color), rgb(142, 197, 204));
 
   float: left;
   position: fixed;

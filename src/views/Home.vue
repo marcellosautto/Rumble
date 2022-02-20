@@ -47,8 +47,9 @@ export default {
   position: sticky;
   text-align: center;
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: 40px;
   font-size: 2.5em;
+  color: hsl(191, 78%, 13%);
 }
 
 .home {

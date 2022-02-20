@@ -101,6 +101,10 @@ export default {
     
 }
 
+.rec__forum input{
+  height: 2.3em;
+}
+
 .rf_input{
 padding: 5px;
 background-color: azure;
@@ -116,17 +120,21 @@ font-size: 1.3em;
   margin-top: 10px;
 }
 .create__rec__btn{
-  border: 2px solid rgb(250, 250, 250);
   border-radius: 5px;
-  background-color: rgb(240, 240, 240);
+  border: 0;
+  background-color: hsl(190deg, 95%, 30%);
+  color:rgb(250, 250, 250);
   font-size: 1.1em;
-  transition-duration: 0.2s;
+  transition-duration: 0.25s;
   transition-timing-function: ease;
   margin: 0 5px 0 5px;
+  height: 2.3em;
+  font-family: 'Bree Serif', serif;
+  
 }
 
 .create__rec__btn:hover{
-  background-color: rgb(209, 209, 209);
+  background-color: rgb(4, 83, 99);
   cursor:pointer;
 }
 
@@ -135,6 +143,5 @@ border: 1px rgb(190, 190, 190) solid;
 border-radius: 3px;
 
 }
-
 
 </style>
