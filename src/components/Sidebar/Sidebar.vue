@@ -23,7 +23,7 @@ export default {
     <SidebarLink to="/" icon="fas fa-home">Home</SidebarLink>
     <SidebarLink to="/About" icon="fas fa-image">About</SidebarLink>
     <SidebarLink to="/Preferences" icon="fas fa-list-alt">Preferences</SidebarLink>
-     <SidebarLink to="/EateryList" icon="fas fa-cutlery">Eatery List</SidebarLink>
+    <SidebarLink to="/EateryList" icon="fas fa-cutlery">Eatery List</SidebarLink>
 
       <span
         class="collapse__icon"

@@ -107,11 +107,12 @@ export default {
 
 .rf_input{
 padding: 5px;
-background-color: azure;
-box-shadow: 5px 10px #5a5a5a49;
+background-color: rgba(4, 125, 149, 0.61);
+box-shadow: 5px 10px #46444438;
 margin: 5px;
 text-align: center;
 font-size: 1.3em;
+color: rgb(22, 22, 22);
 
 }
 

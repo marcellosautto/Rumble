@@ -37,7 +37,7 @@ export default {
   font-family: 'Bree Serif', serif;
   height: 100vh;
   padding: 0.5em;
-  background-image: linear-gradient(270deg, rgb(32, 139, 160), rgb(215, 231, 235));
+  background-image: linear-gradient(270deg, rgb(228, 228, 228), rgb(247, 247, 247));
 }
 .title{
   text-align: center;
