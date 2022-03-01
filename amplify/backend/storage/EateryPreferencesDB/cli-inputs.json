@@ -1,0 +1,12 @@
+{
+  "resourceName": "EateryPreferencesDB",
+  "tableName": "EateryPreferencesTable",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "number"
+  },
+  "gsi": [],
+  "triggerFunctions": [
+    "EateryPreferencesDBTriggerfab84672"
+  ]
+}
