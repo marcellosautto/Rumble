@@ -14,8 +14,13 @@
     <input type="text" v-model="origins" placeholder="Ex. Italian" /><br />
     </div>
     <div class="rf_input">
-      <label for="cost">Cost </label><br />
-    <input type="text" v-model="cost" placeholder="Ex. $$" /><br />
+      <label for="cost">Cost</label><br />
+      <select v-model="cost" name="cost" id="cost" required>
+        <option value="$">&#60; $10</option>
+        <option value="$$">$11-$30</option>
+        <option value="$$$">$31-$60</option>
+        <option value="$$$$">&#62; $61</option>
+      </select>
     </div>
     <div class="rf_input">
       <label for="location">Location </label><br />
