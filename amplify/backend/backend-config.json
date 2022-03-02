@@ -1,6 +1,6 @@
 {
   "api": {
-    "rumbleamplify": {
+    "rumble": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -8,9 +8,7 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7,
-              "apiKeyExpirationDate": "2022-02-22T22:56:25.888Z",
-              "description": "rumbleapi"
+              "apiKeyExpirationDays": 7
             }
           },
           "additionalAuthenticationProviders": []
@@ -19,18 +17,18 @@
     }
   },
   "auth": {
-    "rumbleamplify282a7b65": {
+    "rumbleec89696c": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],
-        "usernameAttributes": [
-          "EMAIL"
-        ],
+        "usernameAttributes": [],
         "signupAttributes": [
-          "EMAIL"
+          "BIRTHDATE",
+          "EMAIL",
+          "PHONE_NUMBER"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,

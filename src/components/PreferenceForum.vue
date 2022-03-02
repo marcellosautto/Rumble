@@ -1,17 +1,12 @@
 <template>
   <div class="rec__forum">
-
     <div class="rf_input">
-      <label for="name">Name </label> <br />
-    <input type="text" v-model="name" placeholder="Ex. Olive Garden" /> <br />
+      <label for="category">Category </label> <br />
+    <input type="text" v-model="category" placeholder="Ex. Mexican Food" /> <br />
     </div>
     <div class="rf_input">
       <label for="rating">Rating </label><br />
     <input type="text" v-model="rating" placeholder="Ex. 5/5" /><br />
-    </div>
-    <div class="rf_input">
-       <label for="origins">Origin </label><br />
-    <input type="text" v-model="origins" placeholder="Ex. Italian" /><br />
     </div>
     <div class="rf_input">
       <label for="cost">Cost</label><br />
@@ -31,65 +26,79 @@
     /><br />
     </div>
     <div class="rf_input">
+      <label for="distance">Distance </label><br />
+    <input
+      type="text"
+      v-model="distance"
+      placeholder="Ex. 5 miles"
+    /><br />
+    </div>
+    <div class="rf_input">
       <label for="service">Service </label><br />
     <input type="text" v-model="service" placeholder="Ex. Resturant" /><br />
-    </div>    
+    </div>
+    <div class="rf_input">
+       <label for="hours">Hours </label><br />
+    <input type="text" v-model="hours" placeholder="Ex. 8PM-10PM" /><br />
+    </div> 
     
   </div>
 
 <div class="btn__container">
-  <button class="create__rec__btn" v-on:click="createPreference">Create Preference</button>
-  <button class="create__rec__btn" v-on:click="listPreferences">List Preferences</button>
+  <button class="create__rec__btn" v-on:click="createDiningPreference">Create Preference</button>
+  <button class="create__rec__btn" v-on:click="listDiningPreferences">List Preferences</button>
   </div>
 </template>
 
 <script>
 
 import { API } from "aws-amplify";
-import { createPreference } from "../graphql/mutations.ts";
-import { listPreferences } from "../graphql/queries.ts";
-import { onCreatePreference } from "../graphql/subscriptions.ts";
+import { createDiningPreference } from "../graphql/mutations";
+import { listDiningPreferences } from "../graphql/queries";
+import { onCreateDiningPreference } from "../graphql/subscriptions";
 
 export default {
   name: "PreferenceForum",
   data() {
     return {
-      name: '',
+      category: '',
       rating: '',
       cost: '',
       location: '',
-      origins: '',
+      distance: '',
       service: '',
+      hours: ''
     }
   },
   methods: {
-      async createPreference() {
-      const { name, rating, cost, location, origins, service } = this;
-      if (!name || !rating || !cost || !location || !origins || !service)
+      async createDiningPreference() {
+      const { category, rating, cost, location, distance, service, hours } = this;
+      if (!category || !rating || !cost || !location || !distance || !service || !hours)
         return;
-      const preference = { name, rating, cost, location, origins, service };
+      const preference = { category, rating, cost, location, distance, service, hours };
       
       await API.graphql({
-        query: createPreference,
+        query: createDiningPreference,
         variables: { input: preference },
       });
-      (this.name = ""),
+      (this.category = ""),
         (this.rating = ""),
         (this.cost = ""),
         (this.location = ""),
-        (this.origins = ""),
-        (this.service = "");
+        (this.distance = ""),
+        (this.service = ""),
+        (this.hours = "");
     },
-    async getPreferences() {
+    async getDiningPreference() {
       const preferences = await API.graphql({
-        query: listPreferences,
+        query: listDiningPreferences,
       });
-      this.preferences = preferences.data.listPreferences.items;
+      this.preferences = preferences.data.listDiningPreferences.items;
     },
     subscribe() {
-      API.graphql({ query: onCreatePreference }).subscribe({
+      API.graphql({ query: onCreateDiningPreference }).subscribe({
         next: (eventData) => {
-          let preference = eventData.value.data.onCreatePreference;
+          let preference = eventData.value.data.onCreateDiningPreference;
           if (
             this.preferences.some(
               (item) => item.name === preference.name
@@ -113,7 +122,7 @@ export default {
     gap: 10px;
     grid-auto-rows: minmax(100px, auto);
     font-family: 'Staatliches', cursive;
-    margin-top: 10px;
+    margin-top: 10vh;
     
 }
 

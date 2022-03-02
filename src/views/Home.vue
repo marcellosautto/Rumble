@@ -1,22 +1,22 @@
 <template>
   <div class="home">
-    <h1 id="title">Home Page</h1>
     <login />
-    <recommendation-forum />
+    <h1 id="title">Preferences</h1>
+    <preferences-forum />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Login from "../components/Login.vue";
-import RecommendationForum from "../components/RecommendationForum.vue";
+import PreferencesForum from "../components/PreferenceForum.vue";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 
 export default {
   name: "Home",
   components: {
     Login,
-    RecommendationForum,
+    PreferencesForum,
   },
   created() {
     onAuthUIStateChange((state, user) => {
@@ -34,7 +34,7 @@ export default {
       location: "",
       origins: "",
       service: "",
-      recommendations: [],
+      preferences: [],
       loading: true,
     };
   },

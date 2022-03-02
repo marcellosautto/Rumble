@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "rumbleamplify282a7b65_identitypool_282a7b65",
+    "identityPoolName": "rumbleec89696c_identitypool_ec89696c",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "rumble282a7b65",
-    "userPoolName": "rumbleamplify282a7b65_userpool_282a7b65",
+    "resourceNameTruncated": "rumbleec89696c",
+    "userPoolName": "rumbleec89696c_userpool_ec89696c",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -20,7 +20,9 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-      "email"
+      "birthdate",
+      "email",
+      "phone_number"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
@@ -31,15 +33,13 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "rumble282a7b65_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "rumbleec89696c_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "282a7b65",
-    "resourceName": "rumbleamplify282a7b65",
+    "sharedId": "ec89696c",
+    "resourceName": "rumbleec89696c",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
-    "usernameAttributes": [
-      "email"
-    ],
+    "triggers": {},
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
