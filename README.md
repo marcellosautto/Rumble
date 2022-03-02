@@ -12,5 +12,5 @@ The application utilizes a machine learning model built to maximize the relevanc
 * GraphQL
 * Babel
 * AWS Amplify
-* Amazon Personalize
+* Yelp API
 
