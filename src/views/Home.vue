@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <login />
     <h1 id="title">Preferences</h1>
+    <login />
     <preferences-forum />
   </div>
 </template>
