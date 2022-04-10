@@ -132,7 +132,7 @@ export default {
 
 .rf_input{
 padding: 5px;
-background-color: rgba(4, 125, 149, 0.61);
+background-color: rgba(86, 86, 86, 0.61);
 box-shadow: 5px 10px #46444438;
 margin: 5px;
 text-align: center;
@@ -148,7 +148,7 @@ color: rgb(22, 22, 22);
 .create__rec__btn{
   border-radius: 5px;
   border: 0;
-  background-color: hsl(190deg, 95%, 30%);
+  background-color: rgb(71, 71, 71);
   color:rgb(250, 250, 250);
   font-size: 1.1em;
   transition-duration: 0.25s;
@@ -160,7 +160,7 @@ color: rgb(22, 22, 22);
 }
 
 .create__rec__btn:hover{
-  background-color: rgb(4, 83, 99);
+  background-color: rgb(45, 45, 45);
   cursor:pointer;
 }
 

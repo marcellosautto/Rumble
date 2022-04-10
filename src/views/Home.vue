@@ -1,22 +1,19 @@
 <template>
   <div class="home">
     <h1 id="title">Preferences</h1>
-    <login />
     <preferences-forum />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Login from "../components/Login.vue";
 import PreferencesForum from "../components/PreferenceForum.vue";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 
 export default {
   name: "Home",
   components: {
-    Login,
-    PreferencesForum,
+    PreferencesForum
   },
   created() {
     onAuthUIStateChange((state, user) => {

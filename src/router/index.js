@@ -1,5 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import About from "../views/About.vue";
+import Preferences from "../views/Preferences.vue";
+import EateryList from "../views/EateryList.vue";
+import SignUp from "../views/SignUp.vue";
+import SignIn from "../views/SignIn.vue";
+
+// import Vue from 'vue'
+// import VueRouter from 'vue-router'
+
+// Vue.use(VueRouter)
 
 const routes = [
   {
@@ -13,7 +23,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: About
   },
   {
     path: '/preferences',
@@ -21,7 +31,8 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Preferences.vue')
+    component: Preferences,
+    meta: {requiresAuth: true}
   },
   {
     path: '/eaterylist',
@@ -29,7 +40,24 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/EateryList.vue')
+    component: EateryList,
+    meta: {requiresAuth: true}
+  },
+  {
+    path: '/signin',
+    name: 'SignIn',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: SignIn
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: SignUp
   }
 ]
 
