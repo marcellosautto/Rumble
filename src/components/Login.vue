@@ -74,7 +74,6 @@
 
             <div class="text-center text-lg-start mt-4 pt-2">
               <button
-                type="button"
                 class="btn btn-dark btn-lg"
                 style="padding-left: 2.5rem; padding-right: 2.5rem"
               >
@@ -119,15 +118,15 @@
   </section>
 </template>
 
-<script setup>
-// import { Authenticator } from "@aws-amplify/ui-vue";
+<!-- <script setup>
+ import { Authenticator } from "@aws-amplify/ui-vue";
 import "@aws-amplify/ui-vue/styles.css";
 
 import Amplify from "aws-amplify";
 import awsconfig from "../aws-exports";
 
 Amplify.configure(awsconfig);
-</script>
+</script> -->
 
 <script>
 import { mapActions } from "vuex"; //allows for cleaner communication with vuex store
@@ -145,7 +144,7 @@ export default {
     }),
     async login() {
       try {
-        await this.loginVue({
+        this.$store.dispatch("auth/login", {
           username: this.username,
           password: this.password,
         });
