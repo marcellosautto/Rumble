@@ -41,13 +41,15 @@ export const auth = {
                 return Promise.reject(error);
             }
         },
-        async signUp(_, {username, password, email}){
+        async signUp(_, {username, password, email, birthdate, phone_number}){
             try {
                 await Auth.signUp({
                     username,
                     password,
                     attributes: {
-                        email
+                        email,
+                        birthdate,
+                        phone_number
                     }
                 })
 

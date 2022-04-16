@@ -1,22 +1,6 @@
-<script>
-import { computed } from "vue";
-import { useRoute } from "vue-router";
-import { collapsed } from "./state.ts";
 
-export default {
-  props: {
-    to: { type: String, required: true },
-    icon: { type: String, required: true },
-  },
-  setup(props) {
-    const route = useRoute();
-    const isActive = computed(() => route.path === props.to);
-    return { isActive, collapsed };
-  },
-};
-</script>
-
-<template>
+<template >
+<div >
   <router-link :to="to" class="link" :class="{ active: isActive }">
     <i class="icon" :class="icon" />
     <transition name="fade">
@@ -25,7 +9,26 @@ export default {
       </span>
     </transition>
   </router-link>
+  </div>
 </template>
+
+<script>
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import { collapsed } from "./state.ts";
+
+export default {
+  props: {
+    to: { type: String, required: true },
+    icon: { type: String, required: true }
+  },
+  setup(props) {
+    const route = useRoute();
+    const isActive = computed(() => route.path === props.to);
+    return { isActive, collapsed };
+  }
+};
+</script>
 
 <style scoped>
 

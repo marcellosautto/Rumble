@@ -76,12 +76,13 @@
               <button
                 class="btn btn-dark btn-lg"
                 style="padding-left: 2.5rem; padding-right: 2.5rem"
+                @click="login"
               >
                 Login
               </button>
               <p class="small fw-bold mt-2 pt-1 mb-0">
                 Don't have an account?
-                <a href="#!" class="link-danger">Register</a>
+                <a href="/signup" class="link-danger">Register</a>
               </p>
             </div>
           </form>

@@ -1,40 +1,67 @@
+<template>
+  <div class="sidebar" :style="{ width: sidebarWidth }">
+    <h1 class="title">
+      <span v-if="collapsed">
+        <div>R</div>
+      </span>
+      <span v-else>Rumble</span>
+    </h1>
+
+    <SidebarLink to="/" icon="fas fa-home">Home</SidebarLink>
+
+    <SidebarLink to="/About" icon="fas fa-image" v-if="user">About</SidebarLink>
+    <SidebarLink to="/Preferences" icon="fas fa-list-alt" v-if="user"
+      >Preferences</SidebarLink
+    >
+    <SidebarLink to="/EateryList" icon="fas fa-cutlery" v-if="user"
+      >Eatery List</SidebarLink
+    >
+    <SidebarLink to="/SignIn" icon="fas fa-user-alt" v-if="!user"
+      >Sign In
+    </SidebarLink>
+
+    <SidebarLink to="/SignIn" icon="fas fa-user-alt" v-if="user"
+      >Welcome {{user.username}}
+    </SidebarLink>
+
+    <SidebarLink to="/" icon="fas fa-user-alt" v-if="user"
+      >Log Out
+    </SidebarLink>
+
+    <span
+      class="collapse__icon"
+      :class="{ rotate__180: collapsed }"
+      @click="toggleSidebar"
+    >
+      <i class="fas fa-angle-double-left" />
+    </span>
+  </div>
+</template>
+
 <script>
-import SidebarLink from './SidebarLink.vue'
+import SidebarLink from "./SidebarLink.vue";
 import { collapsed, toggleSidebar, sidebarWidth } from "./state.ts";
+import { mapGetters } from "vuex";
 
 export default {
   props: {},
-  components: {SidebarLink},
+  components: { SidebarLink },
   setup() {
     return { collapsed, toggleSidebar, sidebarWidth };
   },
+  methods: {
+    async logout() {
+      await this.$store.dispatch("auth/logout");
+      this.$router.push("/");
+    },
+    computed: {
+      ...mapGetters({
+        user: "auth/user",
+      }),
+    },
+  },
 };
 </script>
-
-<template>
-    <div class="sidebar" :style="{ width: sidebarWidth }">
-        <h1 class="title">
-            <span v-if="collapsed">
-                <div>R</div>
-            </span>
-            <span v-else>Rumble</span>
-        </h1>
-
-    <SidebarLink to="/" icon="fas fa-home">Home</SidebarLink>
-    <SidebarLink to="/About" icon="fas fa-image">About</SidebarLink>
-    <SidebarLink to="/Preferences" icon="fas fa-list-alt">Preferences</SidebarLink>
-    <SidebarLink to="/EateryList" icon="fas fa-cutlery">Eatery List</SidebarLink>
-    <SidebarLink to="/SignIn" icon="fas fa-user-alt">Sign In </SidebarLink>
-
-      <span
-        class="collapse__icon"
-        :class="{ 'rotate__180': collapsed }"
-        @click="toggleSidebar"
-      >
-        <i class="fas fa-angle-double-left" />
-      </span>
-    </div>
-</template>
 
 <style>
 :root {
@@ -45,15 +72,18 @@ export default {
 </style>
 
 <style scoped>
-
-.title{
+.title {
   text-align: center;
   padding: 0.2em;
 }
 
 .sidebar {
   color: white;
-  background-image: linear-gradient(90deg, var(--sidebar-bg-color), rgb(163, 163, 163));
+  background-image: linear-gradient(
+    90deg,
+    var(--sidebar-bg-color),
+    rgb(163, 163, 163)
+  );
 
   float: left;
   position: fixed;
@@ -69,7 +99,7 @@ export default {
   flex-direction: column;
 }
 
-.sidebar h1{
+.sidebar h1 {
   height: 2.5em;
 }
 
@@ -82,12 +112,12 @@ export default {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.collapse__icon:hover{
-    cursor: pointer;
+.collapse__icon:hover {
+  cursor: pointer;
 }
 
-.rotate__180{
-    transform: rotate(180deg);
-    transition: 0.2s linear;
+.rotate__180 {
+  transform: rotate(180deg);
+  transition: 0.2s linear;
 }
 </style>

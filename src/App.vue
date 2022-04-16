@@ -16,7 +16,8 @@ Amplify.configure(awsconfig);
 
 <script>
 import Sidebar from "./components/Sidebar/Sidebar.vue";
-import {sidebarWidth} from './components/Sidebar/state.ts'
+import {sidebarWidth} from './components/Sidebar/state.ts';
+
 export default {
   name: "App",
   components: {
