@@ -7,7 +7,7 @@
       <span v-else>Rumble</span>
     </h1>
 
-    <SidebarLink to="/" icon="fas fa-home">Home</SidebarLink>
+    <SidebarLink to="/" icon="fas fa-home" v-if="user">Home</SidebarLink>
 
     <SidebarLink to="/About" icon="fas fa-image" v-if="user">About</SidebarLink>
     <SidebarLink to="/Preferences" icon="fas fa-list-alt" v-if="user"
@@ -21,10 +21,10 @@
     </SidebarLink>
 
     <SidebarLink to="/SignIn" icon="fas fa-user-alt" v-if="user"
-      >Welcome {{user.username}}
+      >Welcome {{ user.username }}
     </SidebarLink>
 
-    <SidebarLink to="/" icon="fas fa-user-alt" v-if="user"
+    <SidebarLink to="" icon="fas fa-user-alt" @click="logout" v-if="user"
       >Log Out
     </SidebarLink>
 
@@ -52,13 +52,13 @@ export default {
   methods: {
     async logout() {
       await this.$store.dispatch("auth/logout");
-      this.$router.push("/");
+      this.$router.push("/signin");
     },
-    computed: {
-      ...mapGetters({
-        user: "auth/user",
-      }),
-    },
+  },
+  computed: {
+    ...mapGetters({
+      user: "auth/user",
+    }),
   },
 };
 </script>

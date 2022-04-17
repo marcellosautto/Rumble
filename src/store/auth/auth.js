@@ -1,20 +1,21 @@
-import {Auth} from "aws-amplify";
+import { Auth } from "aws-amplify";
 
 export const auth = {
 
     namespaced: true,
-    state: {user: null},
+    state: { user: null },
     mutations: {
-        setUser(state, payload){
+        setUser(state, payload) {
             state.user = payload;
         }
+
     },
     actions: {
-        async logout({commit}){
-            commit("setUser",null);
+        async logout({ commit }) {
+            commit("setUser", null);
             return await Auth.signOut();
         },
-        async login({commit}, {username, password}){
+        async login({ commit }, { username, password }) {
             try {
                 await Auth.signIn({
                     username,
@@ -23,15 +24,15 @@ export const auth = {
 
                 const userInfo = await Auth.currentUserInfo();
                 commit("setUser", userInfo);
-
                 return Promise.resolve("Success");
 
-            }catch(error){
+
+            } catch (error) {
                 console.log(error);
                 return Promise.reject(error);
             }
         },
-        async confirmSignUp(_, {username, code}){
+        async confirmSignUp(_, { username, code }) {
             try {
                 await Auth.confirmSignUp(username, code);
                 return Promise.resolve();
@@ -39,9 +40,10 @@ export const auth = {
             } catch (error) {
                 console.log(error);
                 return Promise.reject(error);
+
             }
         },
-        async signUp(_, {username, password, email, birthdate, phone_number}){
+        async signUp(_, { username, password, email, birthdate, phone_number }) {
             try {
                 await Auth.signUp({
                     username,
@@ -52,22 +54,23 @@ export const auth = {
                         phone_number
                     }
                 })
-
                 return Promise.resolve();
+
             } catch (error) {
                 console.log(error);
-                return Promise.reject(error);
+                return Promise.reject();
+
             }
         },
-        async authAction({commit}){
+        async authAction({ commit }) {
             const userInfo = await Auth.currentUserInfo();
             commit("setUser", userInfo);
+
         }
 
     },
     getters: {
-        user(state){
-            return state.user;
-        }
+        user: (state) => state.user
     }
+
 }

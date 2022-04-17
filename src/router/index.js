@@ -5,6 +5,7 @@ import Preferences from "../views/Preferences.vue";
 import EateryList from "../views/EateryList.vue";
 import SignUp from "../views/SignUp.vue";
 import SignIn from "../views/SignIn.vue";
+import { Auth } from 'aws-amplify';
 
 // import Vue from 'vue'
 // import VueRouter from 'vue-router'
@@ -15,7 +16,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {requiresAuth: true}
   },
   {
     path: '/about',
@@ -23,7 +25,8 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: About
+    component: About,
+    meta: {requiresAuth: false}
   },
   {
     path: '/preferences',
@@ -49,7 +52,8 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: SignIn
+    component: SignIn,
+    meta: {requiresAuth: false}
   },
   {
     path: '/signup',
@@ -57,13 +61,26 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: SignUp
+    component: SignUp,
+    meta: {requiresAuth: false}
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const isAuthenticated = await Auth.currentUserInfo();
+
+  if (requiresAuth && !isAuthenticated) {
+    next("/");
+  } else {
+    next()
+  }
+
 })
 
 export default router

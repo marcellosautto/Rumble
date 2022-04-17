@@ -32,7 +32,7 @@
               <p class="text-center fw-bold mx-3 mb-0">Or</p>
             </div>
 
-            <!-- Email input -->
+            <!-- Username input -->
             <div class="form-outline mb-4">
               <input
                 type="username"
@@ -76,7 +76,6 @@
               <button
                 class="btn btn-dark btn-lg"
                 style="padding-left: 2.5rem; padding-right: 2.5rem"
-                @click="login"
               >
                 Login
               </button>
@@ -143,12 +142,13 @@ export default {
     ...mapActions({
       loginVue: "auth/login",
     }),
-    async login() {
+async login() {
       try {
-        this.$store.dispatch("auth/login", {
+        await this.loginVue({
           username: this.username,
           password: this.password,
         });
+        this.$router.push("/");
       } catch (error) {
         this.error = error;
       }

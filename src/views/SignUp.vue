@@ -10,7 +10,7 @@
           />
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form @submit.prevent="login">
+          <form v-if="!confirmPassword" @submit.prevent="signUp">
             <h2>Sign Up</h2>
 
             <!-- Username input -->
@@ -49,7 +49,6 @@
               <label class="form-label" for="password">Password</label>
             </div>
 
-
             <!-- Birthday input -->
             <div class="form-outline mb-3" v-if="!confirmPassword">
               <input
@@ -62,7 +61,6 @@
               <label class="form-label" for="birthdate">Birthday</label>
             </div>
 
-
             <!-- Phone Number input -->
             <div class="form-outline mb-3" v-if="!confirmPassword">
               <input
@@ -73,34 +71,6 @@
                 v-model="phone_number"
               />
               <label class="form-label" for="phone_number">Phone Number</label>
-            </div>
-
-            <!-- Confirm Password input -->
-            <div class="form-outline mb-3" v-if="confirmPassword">
-              <input
-                type="password"
-                id="confirmPassword"
-                class="form-control form-control-lg"
-                placeholder="Confirm password"
-                v-model="confirmPassword"
-              />
-              <label class="form-label" for="confirmPassword"
-                >Confirm Password</label
-              >
-            </div>
-
-            <!-- Code input -->
-            <div class="form-outline mb-3" v-if="confirmPassword">
-              <input
-                type="text"
-                id="code"
-                class="form-control form-control-lg"
-                placeholder="Enter confirmation code..."
-                v-model="code"
-              />
-              <label class="form-label" for="confirmPassword"
-                >Confirm Password</label
-              >
             </div>
 
             <div class="d-flex justify-content-between align-items-center">
@@ -123,13 +93,35 @@
               <button
                 class="btn btn-dark btn-lg"
                 style="padding-left: 2.5rem; padding-right: 2.5rem"
-                @click="signUp"
               >
                 Register
               </button>
             </div>
           </form>
           <div class="text-red-600">{{ error.message }}</div>
+          <form v-if="confirmPassword">
+            <!-- Code input -->
+            <div class="form-outline mb-3" v-if="confirmPassword">
+              <input
+                type="text"
+                id="code"
+                class="form-control form-control-lg"
+                placeholder="Enter confirmation code..."
+                v-model="code"
+              />
+              <label class="form-label" for="code">Confirmation Code</label>
+            </div>
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button
+                class="btn btn-dark btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem"
+                @click="confirmSignUp"
+              >
+                Confirm Sign Up
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -176,7 +168,13 @@ export default {
   }),
   methods: {
     async signUp() {
-      if (!this.email || !this.password) return;
+      if (
+        !this.email ||
+        !this.password ||
+        !this.birthdate ||
+        !this.phone_number
+      )
+        return;
       try {
         await this.$store.dispatch("auth/signUp", {
           username: this.username,
@@ -184,7 +182,6 @@ export default {
           email: this.email,
           birthdate: this.birthdate,
           phone_number: this.phone_number,
-          
         });
 
         this.confirmPassword = true;

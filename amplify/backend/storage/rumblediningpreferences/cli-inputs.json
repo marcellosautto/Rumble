@@ -1,0 +1,14 @@
+{
+  "resourceName": "rumblediningpreferences",
+  "policyUUID": "21c4a75e",
+  "bucketName": "rumble88973e5d6e2d4d0589024b7a410c420a",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

@@ -17,5 +17,11 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientID": "string",
             "CreatedSNSRole": "string"
         }
+    },
+    "storage": {
+        "rumblediningpreferences": {
+            "BucketName": "string",
+            "Region": "string"
+        }
     }
 }
