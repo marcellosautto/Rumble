@@ -11,6 +11,7 @@ The application utilizes a machine learning model built to maximize the relevanc
 * Vue.js
 * GraphQL
 * Babel
+* *Vuex
 * AWS Amplify
-* Yelp API
+* Yelp GraphQL API
 
