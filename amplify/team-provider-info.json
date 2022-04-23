@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "rumbleec89696c": {}
+        "rumbleec89696c": {},
+        "true": {}
       },
       "hosting": {
         "amplifyhosting": {

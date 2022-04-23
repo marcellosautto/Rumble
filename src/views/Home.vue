@@ -7,13 +7,11 @@
 
 <script>
 // @ is an alias to /src
-import PreferencesForum from "../components/PreferenceForum.vue";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 
 export default {
   name: "Home",
   components: {
-    PreferencesForum
   },
   created() {
     onAuthUIStateChange((state, user) => {

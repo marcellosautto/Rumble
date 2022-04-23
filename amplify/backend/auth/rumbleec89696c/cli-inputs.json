@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "rumbleec89696c_identitypool_ec89696c",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "rumbleec89696c",
     "userPoolName": "rumbleec89696c_userpool_ec89696c",
     "autoVerifiedAttributes": [

@@ -9,18 +9,18 @@
 
     <SidebarLink to="/" icon="fas fa-home" v-if="user">Home</SidebarLink>
 
-    <SidebarLink to="/About" icon="fas fa-image" v-if="user">About</SidebarLink>
-    <SidebarLink to="/Preferences" icon="fas fa-list-alt" v-if="user"
+    <SidebarLink to="/about" icon="fas fa-image" v-if="user">About</SidebarLink>
+    <SidebarLink to="/diningpreferences" icon="fas fa-list-alt" v-if="user"
       >Preferences</SidebarLink
     >
-    <SidebarLink to="/EateryList" icon="fas fa-cutlery" v-if="user"
+    <SidebarLink to="/eateryList" icon="fas fa-cutlery" v-if="user"
       >Eatery List</SidebarLink
     >
-    <SidebarLink to="/SignIn" icon="fas fa-user-alt" v-if="!user"
+    <SidebarLink to="/signin" icon="fas fa-user-alt" v-if="!user"
       >Sign In
     </SidebarLink>
 
-    <SidebarLink to="/SignIn" icon="fas fa-user-alt" v-if="user"
+    <SidebarLink to="/signin" icon="fas fa-user-alt" v-if="user"
       >Welcome {{ user.username }}
     </SidebarLink>
 
