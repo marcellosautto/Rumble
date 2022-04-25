@@ -20,8 +20,8 @@ export const diningPreferenceInfo = {
     setDiningPreferences(state, payload) {
       state.diningpreferences = payload;
     },
-    resetState(diningpreferences) {
-      Object.assign(diningpreferences, getDefaultState());
+    resetState(state) {
+      state.diningpreferences = getDefaultState();
     },
   },
   actions: {
