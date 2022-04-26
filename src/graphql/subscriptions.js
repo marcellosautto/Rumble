@@ -6,11 +6,23 @@ export const onCreateDiningPreference = /* GraphQL */ `
     onCreateDiningPreference {
       id
       category
-      rating
-      cost
+      price
       location
       distance
       hours
+      limit
+      recommendations {
+        total
+        business {
+          name
+          rating
+          price
+          distance
+        }
+        id
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -21,11 +33,23 @@ export const onUpdateDiningPreference = /* GraphQL */ `
     onUpdateDiningPreference {
       id
       category
-      rating
-      cost
+      price
       location
       distance
       hours
+      limit
+      recommendations {
+        total
+        business {
+          name
+          rating
+          price
+          distance
+        }
+        id
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -36,11 +60,98 @@ export const onDeleteDiningPreference = /* GraphQL */ `
     onDeleteDiningPreference {
       id
       category
-      rating
-      cost
+      price
       location
       distance
       hours
+      limit
+      recommendations {
+        total
+        business {
+          name
+          rating
+          price
+          distance
+        }
+        id
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateDiningRecommendation = /* GraphQL */ `
+  subscription OnCreateDiningRecommendation {
+    onCreateDiningRecommendation {
+      total
+      business {
+        name
+        rating
+        price
+        location {
+          address
+          city
+          state
+          country
+        }
+        distance
+        hours {
+          is_open_now
+        }
+      }
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateDiningRecommendation = /* GraphQL */ `
+  subscription OnUpdateDiningRecommendation {
+    onUpdateDiningRecommendation {
+      total
+      business {
+        name
+        rating
+        price
+        location {
+          address
+          city
+          state
+          country
+        }
+        distance
+        hours {
+          is_open_now
+        }
+      }
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteDiningRecommendation = /* GraphQL */ `
+  subscription OnDeleteDiningRecommendation {
+    onDeleteDiningRecommendation {
+      total
+      business {
+        name
+        rating
+        price
+        location {
+          address
+          city
+          state
+          country
+        }
+        distance
+        hours {
+          is_open_now
+        }
+      }
+      id
       createdAt
       updatedAt
     }

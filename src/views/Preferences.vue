@@ -19,21 +19,16 @@
       <br />
     </div>
     <div class="rf_input">
-      <label for="rating" class="subhead">Minimum Rating </label><br />
-      <vue3starRatings
-        v-model="rating"
-        :step="0.5"
-        disableClick=false
-        starColor="#fff"
-      />
+      <label for="limit" class="subhead">List Limit (Max. 10)</label><br />
+      <input type="text" v-model="limit" placeholder="Ex. 5" /><br />
     </div>
     <div class="rf_input">
-      <label for="cost" class="subhead">Cost</label><br />
-      <select v-model="cost" name="cost" id="cost" required>
-        <option value="$">&#60; $10</option>
-        <option value="$$">$11-$30</option>
-        <option value="$$$">$31-$60</option>
-        <option value="$$$$">&#62; $61</option>
+      <label for="price" class="subhead">Price</label><br />
+      <select v-model="price" name="price" id="price" required>
+        <option value="1">&#60; $10</option>
+        <option value="2">$11-$30</option>
+        <option value="3">$31-$60</option>
+        <option value="4">&#62; $61</option>
       </select>
     </div>
     <div class="rf_input">
@@ -89,11 +84,9 @@
 
 <script>
 import { mapGetters } from "vuex";
-import vue3starRatings from "vue3-star-ratings";
 import VueGoogleAutocomplete from "vue-google-autocomplete";
 export default {
   components: {
-    vue3starRatings,
     VueGoogleAutocomplete,
   },
   async mounted() {
@@ -101,10 +94,10 @@ export default {
   },
   data: () => ({
     category: "",
-    rating: "",
-    cost: "",
+    limit: 1,
+    price: "",
     location: "",
-    distance: "",
+    distance: 5,
     hours: "",
   }),
   methods: {
@@ -115,8 +108,8 @@ export default {
       this.error = "";
       if (
         !this.category ||
-        !this.rating ||
-        !this.cost ||
+        !this.limit ||
+        !this.price ||
         !this.location ||
         !this.distance ||
         !this.hours
@@ -126,8 +119,8 @@ export default {
 
       const newDiningPreference = {
         category: this.category,
-        rating: this.rating,
-        cost: this.cost,
+        limit: this.limit,
+        price: this.price,
         location: this.location,
         distance: this.distance,
         hours: this.hours,
