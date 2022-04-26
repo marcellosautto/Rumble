@@ -10,7 +10,6 @@ export const onCreateDiningPreference = /* GraphQL */ `
       cost
       location
       distance
-      service
       hours
       createdAt
       updatedAt
@@ -26,7 +25,6 @@ export const onUpdateDiningPreference = /* GraphQL */ `
       cost
       location
       distance
-      service
       hours
       createdAt
       updatedAt
@@ -42,7 +40,6 @@ export const onDeleteDiningPreference = /* GraphQL */ `
       cost
       location
       distance
-      service
       hours
       createdAt
       updatedAt

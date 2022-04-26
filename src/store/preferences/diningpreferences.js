@@ -2,6 +2,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { createDiningPreference as createDiningPreferenceMutation } from "@/graphql/mutations";
 import { getDiningPreference as getDiningPreferenceQuery } from "@/graphql/queries";
 import { listDiningPreferences as listDiningPreferencesQuery } from "@/graphql/queries";
+import {deleteDiningPreference as deleteDiningPreferenceMutation} from "@/graphql/mutations";
 //import { createDiningPhoto as createDiningPhotoMutation } from "@/graphql/mutations";
 // import { uuid } from "uuidv4";
 // import awsconfig from "@/aws-exports";
@@ -41,6 +42,19 @@ export const diningPreferenceInfo = {
         console.error("createDiningPreference", error);
       }
     },
+    async deleteDiningPreference({commit}, preferenceId){
+      try {
+        await API.graphql(
+          graphqlOperation(deleteDiningPreferenceMutation, {
+            input: preferenceId,
+          })
+        );
+
+        commit("deleteDiningPreference", preferenceId);
+      } catch (error) {
+        console.error("createDiningPreference", error);
+      }
+    },
     async getDiningPreference(_, preferenceId) {
       return await API.graphql(
         graphqlOperation(getDiningPreferenceQuery, { id: preferenceId })
@@ -55,44 +69,6 @@ export const diningPreferenceInfo = {
         preferencesData.data.listDiningPreferences.items
       );
     },
-    // async createDiningPhoto(_, data) {
-    //     const {
-    //         aws_user_files_s3_bucket_region: region,
-    //         aws_user_files_s3_bucket: bucket
-    //     } = awsconfig;
-    //     const { file, type: mimeType, id } = data;
-    //     const extension = file.name.substr(file.name.lastIndexOf(".") + 1);
-    //     const photoId = uuid();
-    //     const key = `images/${photoId}.${extension}`;
-    //     const inputData = {
-    //         id: photoId,
-    //         photopreferenceId: id,
-    //         contentType: mimeType,
-    //         fullsize: {
-    //             key,
-    //             region,
-    //             bucket
-    //         }
-    //     }
-
-    //     //s3 bucket storage add file to it
-    //     try {
-    //         await Storage.put(key, file, {
-    //             level: "protected",
-    //             contentType: mimeType,
-    //             metadata: { preferenceId: id, photoId }
-    //         })
-    //         await API.graphql(
-    //             graphqlOperation(createDiningPhotoMutation, { input: inputData })
-    //         )
-    //         return Promise.resolve("success");
-
-    //     } catch (error) {
-    //         console.log("createDiningPhoto error", error)
-    //         return Promise.reject(error);
-
-    //     }
-    // }
   },
   getters: {
     diningpreferences: (state) => state.diningpreferences

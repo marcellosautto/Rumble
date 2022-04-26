@@ -2,16 +2,33 @@
   <h1 id="title">Preferences</h1>
   <div class="rec__forum">
     <div class="rf_input">
-      <label for="category">Category </label> <br />
-      <input type="text" v-model="category" placeholder="Ex. Mexican Food" />
+      <label for="category" class="subhead">Category </label> <br />
+      <select v-model="category" name="category" id="category" required>
+        <option value="Bistros">Bistros</option>
+        <option value="Barbeque">Barbeque</option>
+        <option value="Cafes">Cafes</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Indian">Indian</option>
+        <option value="Italian">Italian</option>
+        <option value="Sushi">Sushi</option>
+        <option value="Mexican">Mexican</option>
+        <option value="Pizza">Pizza</option>
+        <option value="Sandwiches">Sandwiches</option>
+        <option value="Thai">Thai</option>
+      </select>
       <br />
     </div>
     <div class="rf_input">
-      <label for="rating">Rating </label><br />
-      <input type="text" v-model="rating" placeholder="Ex. 5/5" /><br />
+      <label for="rating" class="subhead">Minimum Rating </label><br />
+      <vue3starRatings
+        v-model="rating"
+        :step="0.5"
+        disableClick=false
+        starColor="#fff"
+      />
     </div>
     <div class="rf_input">
-      <label for="cost">Cost</label><br />
+      <label for="cost" class="subhead">Cost</label><br />
       <select v-model="cost" name="cost" id="cost" required>
         <option value="$">&#60; $10</option>
         <option value="$$">$11-$30</option>
@@ -20,24 +37,26 @@
       </select>
     </div>
     <div class="rf_input">
-      <label for="location">Location </label><br />
-      <input
-        type="text"
+      <label for="location" class="subhead">Location </label><br />
+      <vue-google-autocomplete
+        id="map"
         v-model="location"
-        placeholder="Ex. Thousand Oaks"
-      /><br />
+        classname="form-control"
+        placeholder="Ex. Northridge"
+        v-on:placechanged="getAddressData"
+      >
+      </vue-google-autocomplete>
     </div>
     <div class="rf_input">
-      <label for="distance">Distance </label><br />
-      <input type="text" v-model="distance" placeholder="Ex. 5 miles" /><br />
+      <label for="distance" class="subhead">Search Radius (in Miles) </label><br />
+      <input type="text" v-model="distance" placeholder="Ex. 5" /><br />
     </div>
     <div class="rf_input">
-      <label for="service">Service </label><br />
-      <input type="text" v-model="service" placeholder="Ex. Resturant" /><br />
-    </div>
-    <div class="rf_input">
-      <label for="hours">Hours </label><br />
-      <input type="text" v-model="hours" placeholder="Ex. 8PM-10PM" /><br />
+      <label for="hours" class="subhead">Hours </label><br />
+      <select v-model="hours" name="hours" id="hours" required>
+        <option value="true">Open Now</option>
+        <option value="false">No Preference</option>
+      </select>
     </div>
   </div>
 
@@ -60,7 +79,7 @@
     :key="i"
     class="preference_list"
     role="button"
-    @click="openPreferenceDetail(diningpreference)"
+    @click="openRecommendations(diningpreference)"
   >
     <div class="cursor-pointer preference_item">
       {{ diningpreference.category }}
@@ -70,7 +89,13 @@
 
 <script>
 import { mapGetters } from "vuex";
+import vue3starRatings from "vue3-star-ratings";
+import VueGoogleAutocomplete from "vue-google-autocomplete";
 export default {
+  components: {
+    vue3starRatings,
+    VueGoogleAutocomplete,
+  },
   async mounted() {
     this.$store.dispatch("diningPreferenceInfo/getDiningPreferencesData"); //NOT WORKING
   },
@@ -80,11 +105,10 @@ export default {
     cost: "",
     location: "",
     distance: "",
-    service: "",
     hours: "",
   }),
   methods: {
-    openPreferenceDetail(diningPreference) {
+    openRecommendations(diningPreference) {
       this.$router.push(`/diningpreferences/${diningPreference.id}`);
     },
     async createDiningPreference() {
@@ -95,7 +119,6 @@ export default {
         !this.cost ||
         !this.location ||
         !this.distance ||
-        !this.service ||
         !this.hours
       ) {
         return;
@@ -107,7 +130,6 @@ export default {
         cost: this.cost,
         location: this.location,
         distance: this.distance,
-        service: this.service,
         hours: this.hours,
       };
 
@@ -116,15 +138,18 @@ export default {
         newDiningPreference
       );
     },
+    async deleteDiningPreference() {
+      this.$store.commit("diningPreferenceInfo/deleteDiningPreference");
+    },
     async clearDiningPreferences() {
-      this.$store.dispatch("diningPreferenceInfo/clearDiningPreferences");
+      this.$store.commit("diningPreferenceInfo/resetState");
     },
   },
 
   computed: {
     ...mapGetters({
       user: "auth/user",
-      diningpreferences: "diningPreferenceInfo/diningpreferences"
+      diningpreferences: "diningPreferenceInfo/diningpreferences",
     }),
   },
 };
@@ -150,8 +175,13 @@ export default {
   margin-top: 10vh;
 }
 
-.rec__forum input {
-  height: 2.3em;
+.rec__forum select {
+  height: 1.5em;
+  font-size: 1.5em;
+}
+
+.subhead {
+  font-size: 1.4em;
 }
 
 .rf_input {

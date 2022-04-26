@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import About from "../views/About.vue";
 import Preferences from "../views/Preferences.vue";
-import PreferencesDetail from "../views/PreferencesDetail.vue";
+import Recommendations from "../views/Recommendations.vue";
 import EateryList from "../views/EateryList.vue";
 import SignUp from "../views/SignUp.vue";
 import SignIn from "../views/SignIn.vue";
@@ -39,11 +39,11 @@ const routes = [
   },
   {
     path: '/diningpreferences/:id',
-    name: 'PreferencesDetail',
+    name: 'Recommendations',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: PreferencesDetail,
+    component: Recommendations,
     meta: {requiresAuth: true}
   },
   {

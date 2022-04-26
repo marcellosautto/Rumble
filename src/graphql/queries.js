@@ -10,7 +10,6 @@ export const getDiningPreference = /* GraphQL */ `
       cost
       location
       distance
-      service
       hours
       createdAt
       updatedAt
@@ -35,7 +34,6 @@ export const listDiningPreferences = /* GraphQL */ `
         cost
         location
         distance
-        service
         hours
         createdAt
         updatedAt
