@@ -12,8 +12,7 @@ export const getDiningPreference = /* GraphQL */ `
       hours
       limit
       recommendations {
-        total
-        business {
+        businesses {
           name
           rating
           price
@@ -48,7 +47,6 @@ export const listDiningPreferences = /* GraphQL */ `
         hours
         limit
         recommendations {
-          total
           id
           createdAt
           updatedAt
@@ -63,8 +61,7 @@ export const listDiningPreferences = /* GraphQL */ `
 export const getDiningRecommendation = /* GraphQL */ `
   query GetDiningRecommendation($id: ID!) {
     getDiningRecommendation(id: $id) {
-      total
-      business {
+      businesses {
         name
         rating
         price
@@ -97,8 +94,7 @@ export const listDiningRecommendations = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
-        total
-        business {
+        businesses {
           name
           rating
           price

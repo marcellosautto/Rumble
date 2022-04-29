@@ -12,8 +12,7 @@ export const onCreateDiningPreference = /* GraphQL */ `
       hours
       limit
       recommendations {
-        total
-        business {
+        businesses {
           name
           rating
           price
@@ -39,8 +38,7 @@ export const onUpdateDiningPreference = /* GraphQL */ `
       hours
       limit
       recommendations {
-        total
-        business {
+        businesses {
           name
           rating
           price
@@ -66,8 +64,7 @@ export const onDeleteDiningPreference = /* GraphQL */ `
       hours
       limit
       recommendations {
-        total
-        business {
+        businesses {
           name
           rating
           price
@@ -85,8 +82,7 @@ export const onDeleteDiningPreference = /* GraphQL */ `
 export const onCreateDiningRecommendation = /* GraphQL */ `
   subscription OnCreateDiningRecommendation {
     onCreateDiningRecommendation {
-      total
-      business {
+      businesses {
         name
         rating
         price
@@ -110,8 +106,7 @@ export const onCreateDiningRecommendation = /* GraphQL */ `
 export const onUpdateDiningRecommendation = /* GraphQL */ `
   subscription OnUpdateDiningRecommendation {
     onUpdateDiningRecommendation {
-      total
-      business {
+      businesses {
         name
         rating
         price
@@ -135,8 +130,7 @@ export const onUpdateDiningRecommendation = /* GraphQL */ `
 export const onDeleteDiningRecommendation = /* GraphQL */ `
   subscription OnDeleteDiningRecommendation {
     onDeleteDiningRecommendation {
-      total
-      business {
+      businesses {
         name
         rating
         price

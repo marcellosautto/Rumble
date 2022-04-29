@@ -15,8 +15,7 @@ export const createDiningPreference = /* GraphQL */ `
       hours
       limit
       recommendations {
-        total
-        business {
+        businesses {
           name
           rating
           price
@@ -45,8 +44,7 @@ export const updateDiningPreference = /* GraphQL */ `
       hours
       limit
       recommendations {
-        total
-        business {
+        businesses {
           name
           rating
           price
@@ -75,8 +73,7 @@ export const deleteDiningPreference = /* GraphQL */ `
       hours
       limit
       recommendations {
-        total
-        business {
+        businesses {
           name
           rating
           price
@@ -97,8 +94,7 @@ export const createDiningRecommendation = /* GraphQL */ `
     $condition: ModelDiningRecommendationConditionInput
   ) {
     createDiningRecommendation(input: $input, condition: $condition) {
-      total
-      business {
+      businesses {
         name
         rating
         price
@@ -125,8 +121,7 @@ export const updateDiningRecommendation = /* GraphQL */ `
     $condition: ModelDiningRecommendationConditionInput
   ) {
     updateDiningRecommendation(input: $input, condition: $condition) {
-      total
-      business {
+      businesses {
         name
         rating
         price
@@ -153,8 +148,7 @@ export const deleteDiningRecommendation = /* GraphQL */ `
     $condition: ModelDiningRecommendationConditionInput
   ) {
     deleteDiningRecommendation(input: $input, condition: $condition) {
-      total
-      business {
+      businesses {
         name
         rating
         price

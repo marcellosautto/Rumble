@@ -11,6 +11,6 @@ import "@aws-amplify/ui-vue/styles.css";
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+//var cors = require('cors')
 Amplify.configure(aws_exports);
-
 createApp(App).use(router).use(store).mount('#app')

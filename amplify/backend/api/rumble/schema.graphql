@@ -3,6 +3,7 @@
 input AMPLIFY {
   globalAuthRule: AuthRule = { allow: public }
 } # FOR TESTING ONLY!
+
 type DiningPreference @model {
   id: ID!
   category: String!
@@ -11,12 +12,12 @@ type DiningPreference @model {
   distance: Int!
   hours: Boolean!
   limit: Int!
-  recommendations: [DiningRecommendation]
+  recommendations: DiningRecommendation
 }
 
 type DiningRecommendation @model{
-  total: Int
-  business: [Business]
+  #total: Int!
+  businesses: [Business]!
 }
 
 type Hours {

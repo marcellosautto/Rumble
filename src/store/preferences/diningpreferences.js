@@ -2,8 +2,8 @@ import { API, graphqlOperation } from "aws-amplify";
 import { createDiningPreference as createDiningPreferenceMutation } from "@/graphql/mutations";
 import { getDiningPreference as getDiningPreferenceQuery } from "@/graphql/queries";
 import { listDiningPreferences as listDiningPreferencesQuery } from "@/graphql/queries";
-import {deleteDiningPreference as deleteDiningPreferenceMutation} from "@/graphql/mutations";
-//import { createDiningPhoto as createDiningPhotoMutation } from "@/graphql/mutations";
+import { deleteDiningPreference as deleteDiningPreferenceMutation } from "@/graphql/mutations";
+//import { createDiningRecommendation as createDiningRecommendationMutation} from "@/graphql/mutations";
 // import { uuid } from "uuidv4";
 // import awsconfig from "@/aws-exports";
 
@@ -16,7 +16,7 @@ const getDefaultState = () => {
 
 export const diningPreferenceInfo = {
   namespaced: true,
-  state: { diningpreferences: null},
+  state: { diningpreferences: null },
   mutations: {
     setDiningPreferences(state, payload) {
       state.diningpreferences = payload;
@@ -29,7 +29,10 @@ export const diningPreferenceInfo = {
     async clearDiningPreferences({ commit }) {
       commit("resetState");
     },
-    async createDiningPreference({ dispatch }, newPreference) {
+    async createDiningPreference(
+      { dispatch },
+      newPreference,
+    ) {
       try {
         await API.graphql(
           graphqlOperation(createDiningPreferenceMutation, {
@@ -37,12 +40,16 @@ export const diningPreferenceInfo = {
           })
         );
 
+        // await API.graphql(createDiningRecommendation, {
+        //   input: recommendations
+        // })
+
         dispatch("getDiningPreferencesData");
       } catch (error) {
         console.error("createDiningPreference", error);
       }
     },
-    async deleteDiningPreference({commit}, preferenceId){
+    async deleteDiningPreference({ commit }, preferenceId) {
       try {
         await API.graphql(
           graphqlOperation(deleteDiningPreferenceMutation, {
@@ -71,6 +78,6 @@ export const diningPreferenceInfo = {
     },
   },
   getters: {
-    diningpreferences: (state) => state.diningpreferences
+    diningpreferences: (state) => state.diningpreferences,
   },
 };

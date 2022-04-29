@@ -33,17 +33,18 @@
     </div>
     <div class="rf_input">
       <label for="location" class="subhead">Location </label><br />
-      <vue-google-autocomplete
+      <!-- <vue-google-autocomplete
         id="map"
         v-model="location"
         classname="form-control"
         placeholder="Ex. Northridge"
-        v-on:placechanged="getAddressData"
       >
-      </vue-google-autocomplete>
+      </vue-google-autocomplete> -->
+      <input type="text" v-model="location" placeholder="Ex. Westlake" /><br />
     </div>
     <div class="rf_input">
-      <label for="distance" class="subhead">Search Radius (in Miles) </label><br />
+      <label for="distance" class="subhead">Search Radius (in Miles) </label
+      ><br />
       <input type="text" v-model="distance" placeholder="Ex. 5" /><br />
     </div>
     <div class="rf_input">
@@ -84,10 +85,10 @@
 
 <script>
 import { mapGetters } from "vuex";
-import VueGoogleAutocomplete from "vue-google-autocomplete";
+//import VueGoogleAutocomplete from "vue-google-autocomplete";
 export default {
   components: {
-    VueGoogleAutocomplete,
+    //VueGoogleAutocomplete,
   },
   async mounted() {
     this.$store.dispatch("diningPreferenceInfo/getDiningPreferencesData"); //NOT WORKING
@@ -95,14 +96,56 @@ export default {
   data: () => ({
     category: "",
     limit: 1,
-    price: "",
-    location: "",
-    distance: 5,
-    hours: "",
+    price: "2",
+    location: "San Jose",
+    distance: 20000,
+    hours: "true",
+    token:
+      "9mMmTKly_zcp7ACBIKuGgVZOvapY8rI3bvv-k39C5sz-ZCUCdpstKoe2N4LLWkDMUYT8fmimrgabuRQYaiJItY8CDP6Ub1bqQZCOz6kMEoo4ZmLqP6rbkePpj8lpYnYx",
   }),
   methods: {
     openRecommendations(diningPreference) {
       this.$router.push(`/diningpreferences/${diningPreference.id}`);
+    },
+    // async queryFetchPOST(query, variables) {
+    //   const res = await fetch("https://api.yelp.com/v3/businesses/search/", {
+    //     method: "POST",
+    //     mode: "no-cors",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${this.token}`,
+    //     },
+    //     body: JSON.stringify({
+    //       query: query,
+    //       variables: variables,
+    //     }),
+    //   });
+    //   return await res.json();
+    // },
+    async queryFetchGET() {
+      var myHeaders = new Headers();
+      myHeaders.append(
+        "Authorization", "Bearer 9mMmTKly_zcp7ACBIKuGgVZOvapY8rI3bvv-k39C5sz-ZCUCdpstKoe2N4LLWkDMUYT8fmimrgabuRQYaiJItY8CDP6Ub1bqQZCOz6kMEoo4ZmLqP6rbkePpj8lpYnYx",
+      );
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch(
+        `http://localhost:8080/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}&open_now=${this.hours}`,
+        requestOptions
+      )
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+    },
+    async getYelpRecommendations() {
+      return this.queryFetchGET().then((data) => {
+        console.log(data);
+      });
     },
     async createDiningPreference() {
       this.error = "";
@@ -124,6 +167,7 @@ export default {
         location: this.location,
         distance: this.distance,
         hours: this.hours,
+        diningRecommendations: await this.getYelpRecommendations(),
       };
 
       this.$store.dispatch(
