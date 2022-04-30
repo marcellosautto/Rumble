@@ -6,12 +6,29 @@ export const getDiningPreference = /* GraphQL */ `
     getDiningPreference(id: $id) {
       id
       category
-      rating
-      cost
+      price
       location
       distance
-      service
       hours
+      limit
+      recommendation {
+        businesses {
+          id
+          alias
+          name
+          image_url
+          is_closed
+          url
+          review_count
+          rating
+          transactions
+          price
+          phone
+          display_phone
+          distance
+        }
+        total
+      }
       createdAt
       updatedAt
     }
@@ -31,12 +48,14 @@ export const listDiningPreferences = /* GraphQL */ `
       items {
         id
         category
-        rating
-        cost
+        price
         location
         distance
-        service
         hours
+        limit
+        recommendation {
+          total
+        }
         createdAt
         updatedAt
       }

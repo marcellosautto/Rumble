@@ -85,7 +85,7 @@
               </p>
             </div>
           </form>
-          <div class="text-red-600">{{ error.message }}</div>
+          <div class="error-text">{{ error.message }}</div>
         </div>
       </div>
     </div>
@@ -148,7 +148,7 @@ async login() {
           username: this.username,
           password: this.password,
         });
-        this.$router.push("/");
+        this.$router.push("/diningpreferences");
       } catch (error) {
         this.error = error;
       }
@@ -164,6 +164,10 @@ async login() {
 
 .auth__div {
   text-align: right;
+}
+
+.error-text{
+  color: red;
 }
 
 .divider:after,

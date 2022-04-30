@@ -1,15 +1,64 @@
 # This "input" configures a global authorization rule to enable public access to
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
-
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
 type DiningPreference @model {
   id: ID!
   category: String!
-  rating: String!
-  cost: String!
-  location: String
-  distance: String
-  service: String
-  hours: String
+  price: String!
+  location: String!
+  distance: Int!
+  hours: String!
+  limit: Int!
+  recommendation: DiningRecommendation
+}
+type DiningRecommendation {
+  businesses: [Business]
+  total: Int
+  region: Region
+}
 
+type Location {
+  address1: String
+  address2: String
+  address3: String
+  city: String
+  zip_code: String
+  country: String
+  state: String
+  display_address: [String]
+}
+
+type Category {
+  alias: String
+  title: String
+}
+
+type Business {
+  id: String
+  alias: String
+  name: String
+  image_url: String
+  is_closed: Boolean
+  url: String
+  review_count: Int
+  categories: [Category]
+  rating: Float
+  coordinates: Coords
+  transactions: [String]
+  price: String
+  location: [Location]
+  phone: String
+  display_phone: String
+  distance: Float
+}
+
+type Region {
+  center: Coords
+}
+
+type Coords {
+  longitude: Float
+  latitude: Float
 }

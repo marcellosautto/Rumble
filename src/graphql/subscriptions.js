@@ -6,12 +6,29 @@ export const onCreateDiningPreference = /* GraphQL */ `
     onCreateDiningPreference {
       id
       category
-      rating
-      cost
+      price
       location
       distance
-      service
       hours
+      limit
+      recommendation {
+        businesses {
+          id
+          alias
+          name
+          image_url
+          is_closed
+          url
+          review_count
+          rating
+          transactions
+          price
+          phone
+          display_phone
+          distance
+        }
+        total
+      }
       createdAt
       updatedAt
     }
@@ -22,12 +39,29 @@ export const onUpdateDiningPreference = /* GraphQL */ `
     onUpdateDiningPreference {
       id
       category
-      rating
-      cost
+      price
       location
       distance
-      service
       hours
+      limit
+      recommendation {
+        businesses {
+          id
+          alias
+          name
+          image_url
+          is_closed
+          url
+          review_count
+          rating
+          transactions
+          price
+          phone
+          display_phone
+          distance
+        }
+        total
+      }
       createdAt
       updatedAt
     }
@@ -38,12 +72,29 @@ export const onDeleteDiningPreference = /* GraphQL */ `
     onDeleteDiningPreference {
       id
       category
-      rating
-      cost
+      price
       location
       distance
-      service
       hours
+      limit
+      recommendation {
+        businesses {
+          id
+          alias
+          name
+          image_url
+          is_closed
+          url
+          review_count
+          rating
+          transactions
+          price
+          phone
+          display_phone
+          distance
+        }
+        total
+      }
       createdAt
       updatedAt
     }

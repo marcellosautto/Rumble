@@ -98,7 +98,7 @@
               </button>
             </div>
           </form>
-          <div class="text-red-600">{{ error.message }}</div>
+          <div class="error-text">{{ error.message }}</div>
           <form v-if="confirmPassword">
             <!-- Code input -->
             <div class="form-outline mb-3" v-if="confirmPassword">
@@ -232,6 +232,9 @@ export default {
 }
 .h-custom {
   height: calc(100% - 73px);
+}
+.error-text{
+  color: red;
 }
 
 @media (max-width: 450px) {
