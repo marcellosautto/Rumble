@@ -107,22 +107,7 @@ export default {
     openRecommendations(diningPreference) {
       this.$router.push(`/diningpreferences/${diningPreference.id}`);
     },
-    // async queryFetchPOST(query, variables) {
-    //   const res = await fetch("https://api.yelp.com/v3/businesses/search/", {
-    //     method: "POST",
-    //     mode: "no-cors",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${this.token}`,
-    //     },
-    //     body: JSON.stringify({
-    //       query: query,
-    //       variables: variables,
-    //     }),
-    //   });
-    //   return await res.json();
-    // },
-    async queryFetchGET() {
+    async getYelpRecommendations() {
       var myHeaders = new Headers();
       myHeaders.append(
         "Authorization", "Bearer 9mMmTKly_zcp7ACBIKuGgVZOvapY8rI3bvv-k39C5sz-ZCUCdpstKoe2N4LLWkDMUYT8fmimrgabuRQYaiJItY8CDP6Ub1bqQZCOz6kMEoo4ZmLqP6rbkePpj8lpYnYx",
@@ -134,21 +119,20 @@ export default {
         redirect: "follow",
       };
 
-      fetch(
+      const response = await fetch(
         `http://localhost:8080/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}&open_now=${this.hours}`,
         requestOptions
       )
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
-    },
-    async getYelpRecommendations() {
-      return this.queryFetchGET().then((data) => {
-        console.log(data);
-      });
+        // .then((response) => response.json())
+        // .then((result) => console.log(result))
+        // .catch((error) => console.log("error", error));
+      const data = await response.json();
+      return data;
+
     },
     async createDiningPreference() {
       this.error = "";
+
       if (
         !this.category ||
         !this.limit ||
@@ -167,7 +151,7 @@ export default {
         location: this.location,
         distance: this.distance,
         hours: this.hours,
-        diningRecommendations: await this.getYelpRecommendations(),
+        recommendation: await this.getYelpRecommendations(),
       };
 
       this.$store.dispatch(

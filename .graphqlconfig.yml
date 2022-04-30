@@ -1,6 +1,6 @@
 projects:
   rumble:
-    schemaPath: src/graphql/schema.json
+    schemaPath: amplify/backend/api/rumble/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:

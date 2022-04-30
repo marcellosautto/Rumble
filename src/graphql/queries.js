@@ -11,16 +11,23 @@ export const getDiningPreference = /* GraphQL */ `
       distance
       hours
       limit
-      recommendations {
+      recommendation {
         businesses {
+          id
+          alias
           name
+          image_url
+          is_closed
+          url
+          review_count
           rating
+          transactions
           price
+          phone
+          display_phone
           distance
         }
-        id
-        createdAt
-        updatedAt
+        total
       }
       createdAt
       updatedAt
@@ -46,61 +53,9 @@ export const listDiningPreferences = /* GraphQL */ `
         distance
         hours
         limit
-        recommendations {
-          id
-          createdAt
-          updatedAt
+        recommendation {
+          total
         }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getDiningRecommendation = /* GraphQL */ `
-  query GetDiningRecommendation($id: ID!) {
-    getDiningRecommendation(id: $id) {
-      businesses {
-        name
-        rating
-        price
-        location {
-          address
-          city
-          state
-          country
-        }
-        distance
-        hours {
-          is_open_now
-        }
-      }
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listDiningRecommendations = /* GraphQL */ `
-  query ListDiningRecommendations(
-    $filter: ModelDiningRecommendationFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listDiningRecommendations(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        businesses {
-          name
-          rating
-          price
-          distance
-        }
-        id
         createdAt
         updatedAt
       }

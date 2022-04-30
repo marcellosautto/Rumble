@@ -11,16 +11,23 @@ export const onCreateDiningPreference = /* GraphQL */ `
       distance
       hours
       limit
-      recommendations {
+      recommendation {
         businesses {
+          id
+          alias
           name
+          image_url
+          is_closed
+          url
+          review_count
           rating
+          transactions
           price
+          phone
+          display_phone
           distance
         }
-        id
-        createdAt
-        updatedAt
+        total
       }
       createdAt
       updatedAt
@@ -37,16 +44,23 @@ export const onUpdateDiningPreference = /* GraphQL */ `
       distance
       hours
       limit
-      recommendations {
+      recommendation {
         businesses {
+          id
+          alias
           name
+          image_url
+          is_closed
+          url
+          review_count
           rating
+          transactions
           price
+          phone
+          display_phone
           distance
         }
-        id
-        createdAt
-        updatedAt
+        total
       }
       createdAt
       updatedAt
@@ -63,89 +77,24 @@ export const onDeleteDiningPreference = /* GraphQL */ `
       distance
       hours
       limit
-      recommendations {
+      recommendation {
         businesses {
+          id
+          alias
           name
+          image_url
+          is_closed
+          url
+          review_count
           rating
+          transactions
           price
+          phone
+          display_phone
           distance
         }
-        id
-        createdAt
-        updatedAt
+        total
       }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateDiningRecommendation = /* GraphQL */ `
-  subscription OnCreateDiningRecommendation {
-    onCreateDiningRecommendation {
-      businesses {
-        name
-        rating
-        price
-        location {
-          address
-          city
-          state
-          country
-        }
-        distance
-        hours {
-          is_open_now
-        }
-      }
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateDiningRecommendation = /* GraphQL */ `
-  subscription OnUpdateDiningRecommendation {
-    onUpdateDiningRecommendation {
-      businesses {
-        name
-        rating
-        price
-        location {
-          address
-          city
-          state
-          country
-        }
-        distance
-        hours {
-          is_open_now
-        }
-      }
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteDiningRecommendation = /* GraphQL */ `
-  subscription OnDeleteDiningRecommendation {
-    onDeleteDiningRecommendation {
-      businesses {
-        name
-        rating
-        price
-        location {
-          address
-          city
-          state
-          country
-        }
-        distance
-        hours {
-          is_open_now
-        }
-      }
-      id
       createdAt
       updatedAt
     }
