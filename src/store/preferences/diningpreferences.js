@@ -49,6 +49,11 @@ export const diningPreferenceInfo = {
         console.error("createDiningPreference", error);
       }
     },
+    async getDiningPreference(_, preferenceId) {
+      return await API.graphql(
+        graphqlOperation(getDiningPreferenceQuery, { id: preferenceId })
+      );
+    },
     async deleteDiningPreference({ commit }, preferenceId) {
       try {
         await API.graphql(
@@ -61,11 +66,6 @@ export const diningPreferenceInfo = {
       } catch (error) {
         console.error("createDiningPreference", error);
       }
-    },
-    async getDiningPreference(_, preferenceId) {
-      return await API.graphql(
-        graphqlOperation(getDiningPreferenceQuery, { id: preferenceId })
-      );
     },
     async getDiningPreferencesData({ commit }) {
       const preferencesData = await API.graphql(
