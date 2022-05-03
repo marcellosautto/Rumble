@@ -1,11 +1,13 @@
 <template>
   <div class="eaterylist">
-    <h1 class="text-center title">Favorite Eateries</h1>
+    <h1 class="text-center title">{{ user.username }}'s Favorite Eateries</h1>
 
     <div
       id="carouselExampleIndicators"
-      class="carousel slide "
+      class="carousel slide"
       data-bs-ride="carousel"
+      v-for="(photo, i) in gallery"
+      :key="i"
     >
       <div class="carousel-indicators">
         <button
@@ -14,42 +16,12 @@
           data-bs-slide-to="0"
           class="active"
           aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
         ></button>
       </div>
+
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img
-            src="../assets/images/img1.jpg"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div class="carousel-item">
-          <img
-            src="../assets/images/img2.jpg"
-            class="d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div class="carousel-item">
-          <img
-            src="../assets/images/img3.jpg"
-            class="d-block w-100"
-            alt="..."
-          />
+          <img :src="photo" class="d-block w-100" alt="..." />
         </div>
       </div>
       <button
@@ -75,25 +47,47 @@
 </template>
 
 <script>
-import * as Bootstrap from 'bootstrap';
+import * as Bootstrap from "bootstrap";
+import { mapGetters } from "vuex";
 
 export default {
-  
- mounted(){
-    var myCarousel = document.querySelector('#myCarousel');
-    new Bootstrap.Carousel(myCarousel)
- }
-}
+  mounted() {
+    var myCarousel = document.querySelector("#myCarousel");
+    new Bootstrap.Carousel(myCarousel);
+    this.$store.dispatch("diningPreferenceInfo/getDiningPreferencesData");
+    this.getRecommendationImages();
+  },
+  data: () => ({
+    gallery: [],
+  }),
+  methods: {
+    async getRecommendationImages() {
+      console.log(this.diningPreferences)
+
+      this.diningPreferences.forEach(preference => {
+        console.log(preference['id'])
+        
+        console.log(preference['recommendation'].data)
+      });
+    },
+  },
+  computed: {
+    ...mapGetters({
+      user: "auth/user",
+      diningPreferences: "diningPreferenceInfo/diningpreferences",
+    }),
+  },
+};
 </script>
 
 <style scoped>
 .carousel {
-  width:50%;
-  height:50%;
+  width: 50%;
+  height: 50%;
   margin: auto;
 }
 
-.title{
+.title {
   margin: 1em;
   font-size: 3.7em;
 }

@@ -91,14 +91,14 @@ export default {
     //VueGoogleAutocomplete,
   },
   async mounted() {
-    this.$store.dispatch("diningPreferenceInfo/getDiningPreferencesData"); //NOT WORKING
+    this.$store.dispatch("diningPreferenceInfo/getDiningPreferencesData");
   },
   data: () => ({
     category: "",
     limit: 1,
     price: "2",
     location: "San Jose",
-    distance: 20000,
+    distance: 10,
     hours: "true",
     token:
       "9mMmTKly_zcp7ACBIKuGgVZOvapY8rI3bvv-k39C5sz-ZCUCdpstKoe2N4LLWkDMUYT8fmimrgabuRQYaiJItY8CDP6Ub1bqQZCOz6kMEoo4ZmLqP6rbkePpj8lpYnYx",
@@ -119,8 +119,10 @@ export default {
         redirect: "follow",
       };
 
+
       const response = await fetch(
-        `http://localhost:8080/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}&open_now=${this.hours}`,
+        this.hours == true ? `http://localhost:8080/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}&open_now=${this.hours}` : 
+        `http://localhost:8080/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}`,
         requestOptions
       )
         // .then((response) => response.json())
@@ -149,7 +151,7 @@ export default {
         limit: this.limit,
         price: this.price,
         location: this.location,
-        distance: this.distance,
+        distance: this.distance*1609,
         hours: this.hours,
         recommendation: await this.getYelpRecommendations(),
       };

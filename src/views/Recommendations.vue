@@ -2,11 +2,19 @@
   <div>
     <h3>Recommendations</h3>
 
-    <ul id="example-1">
-      <li v-for="recommendation in recommendations" :key="recommendation.name">
-        {{ recommendation.name }}
-      </li>
-    </ul>
+    <div id="example-1">
+      <span
+        v-for="recommendation in recommendations"
+        :key="recommendation.name"
+      >
+        Name: {{ recommendation.name }} <br />
+        Distance: {{ (recommendation.distance / 1609).toFixed(2) }} Miles <br />
+        Rating: {{ recommendation.rating }} / 5 <br />
+        Price: {{ recommendation.price }}<br />
+        Phone Number: {{recommendation.display_phone}} <br />
+        <h6 :class="!recommendation.is_closed ? 'open' : 'closed'">Open Now</h6> <br />
+      </span>
+    </div>
   </div>
 </template>
 
@@ -48,11 +56,20 @@ export default {
     },
   },
   computed: {
-      id() {
-        return this.$route.params.id;
-      },
+    id() {
+      return this.$route.params.id;
     },
+  },
 };
 </script>
 
-<style></style>
+<style>
+.open {
+  display: contents;
+  color: rgb(1, 196, 1);
+}
+
+.closed {
+  display: none;
+}
+</style>
