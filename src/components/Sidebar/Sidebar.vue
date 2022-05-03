@@ -9,7 +9,7 @@
 
     <SidebarLink to="/" icon="fas fa-home" v-if="user">Home</SidebarLink>
 
-    <SidebarLink to="/about" icon="fas fa-image" v-if="user">About</SidebarLink>
+    <!-- <SidebarLink to="/about" icon="fas fa-image" v-if="user">About</SidebarLink> -->
     <SidebarLink to="/diningpreferences" icon="fas fa-list-alt" v-if="user"
       >Preferences</SidebarLink
     >
@@ -20,7 +20,7 @@
       >Sign In
     </SidebarLink>
 
-    <SidebarLink to="/signin" icon="fas fa-user-alt" v-if="user"
+    <SidebarLink to="" icon="fas fa-user-alt" v-if="user"
       >Welcome {{ user.username }}
     </SidebarLink>
 

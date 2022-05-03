@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import About from "../views/About.vue";
+//import About from "../views/About.vue";
 import Preferences from "../views/Preferences.vue";
 import Recommendations from "../views/Recommendations.vue";
 import EateryList from "../views/EateryList.vue";
@@ -19,15 +19,15 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: About,
-    meta: {requiresAuth: false}
-  },
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: About,
+  //   meta: {requiresAuth: false}
+  // },
   {
     path: '/diningpreferences',
     name: 'Preferences',

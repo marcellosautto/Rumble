@@ -6,10 +6,8 @@
       id="carouselExampleIndicators"
       class="carousel slide"
       data-bs-ride="carousel"
-      v-for="(photo, i) in gallery"
-      :key="i"
     >
-      <div class="carousel-indicators">
+      <!-- <div class="carousel-indicators">
         <button
           type="button"
           data-bs-target="#carouselExampleIndicators"
@@ -17,11 +15,12 @@
           class="active"
           aria-current="true"
         ></button>
-      </div>
+      </div> -->
 
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img :src="photo" class="d-block w-100" alt="..." />
+        <div v-for="(photo, i) in gallery"
+      :key="i" :class=" i == 0 ? 'carousel-item active' : 'carousel-item'" >
+          <img :src="photo" class="d-block w-100" alt="Images of a resturant" />
         </div>
       </div>
       <button
@@ -62,13 +61,27 @@ export default {
   }),
   methods: {
     async getRecommendationImages() {
-      console.log(this.diningPreferences)
+      //console.log(this.diningPreferences)
 
-      this.diningPreferences.forEach(preference => {
-        console.log(preference['id'])
-        
-        console.log(preference['recommendation'].data)
+      this.diningPreferences.forEach(async preference => {
+
+      const det_preference = await this.$store.dispatch(
+        "diningPreferenceInfo/getDiningPreference",
+        preference['id']
+      );
+        //console.log(preference['id'])
+        //console.log(det_preference)
+
+        const recommendations =
+        det_preference.data.getDiningPreference.recommendation.businesses;
+        //console.log(recommendations)
+
+        recommendations.forEach(business => {
+          this.gallery.push(business.image_url)
+        });
       });
+
+      console.log(this.gallery)
     },
   },
   computed: {
