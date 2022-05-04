@@ -1,5 +1,6 @@
 import { API, graphqlOperation } from "aws-amplify";
 import { createDiningPreference as createDiningPreferenceMutation } from "@/graphql/mutations";
+import { updateDiningPreference as updateDiningPreferenceMutation } from "@/graphql/mutations";
 import { getDiningPreference as getDiningPreferenceQuery } from "@/graphql/queries";
 import { listDiningPreferences as listDiningPreferencesQuery } from "@/graphql/queries";
 import { deleteDiningPreference as deleteDiningPreferenceMutation } from "@/graphql/mutations";
@@ -7,12 +8,12 @@ import { deleteDiningPreference as deleteDiningPreferenceMutation } from "@/grap
 // import { uuid } from "uuidv4";
 // import awsconfig from "@/aws-exports";
 
-const getDefaultState = () => {
-  return {
-    items: [],
-    status: "empty",
-  };
-};
+// const getDefaultState = () => {
+//   return {
+//     items: [],
+//     status: "empty",
+//   };
+// };
 
 export const diningPreferenceInfo = {
   namespaced: true,
@@ -21,14 +22,20 @@ export const diningPreferenceInfo = {
     setDiningPreferences(state, payload) {
       state.diningpreferences = payload;
     },
-    resetState(state) {
-      state.diningpreferences = getDefaultState();
-    },
+    // resetState(state) {
+    //   state.diningpreferences = getDefaultState();
+    // },
+    removePreference: (state, id) => state.diningpreferences = state.diningpreferences.filter((diningpreference) => diningpreference.id !== id)
   },
   actions: {
-    async clearDiningPreferences({ commit }) {
-      commit("resetState");
-    },
+    // async clearDiningPreferences({ commit }) {
+    //   await API.graphql(
+    //     graphqlOperation(createDiningPreferenceMutation, {
+    //       input: newPreference,
+    //     })
+    //   );
+    //   commit("resetState");
+    // },
     async createDiningPreference(
       { dispatch },
       newPreference,
@@ -55,16 +62,28 @@ export const diningPreferenceInfo = {
       );
     },
     async deleteDiningPreference({ commit }, preferenceId) {
-      try {
         await API.graphql(
           graphqlOperation(deleteDiningPreferenceMutation, {
-            input: preferenceId,
+            input: {id: preferenceId},
           })
         );
 
-        commit("deleteDiningPreference", preferenceId);
+        commit("removePreference", preferenceId);
+    },
+    async updateDiningPreference(
+      { dispatch },
+      updatedPreference,
+    ) {
+      try {
+        await API.graphql(
+          graphqlOperation(updateDiningPreferenceMutation, {
+            input: updatedPreference
+          })
+        );
+
+        dispatch("getDiningPreferencesData");
       } catch (error) {
-        console.error("createDiningPreference", error);
+        console.error("updateDiningPreference", error);
       }
     },
     async getDiningPreferencesData({ commit }) {

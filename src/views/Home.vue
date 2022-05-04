@@ -35,6 +35,16 @@
     <h2>Frameworks and APIs</h2>
 
     <p>Vue.js | GraphQL | Babel | Vuex | AWS Amplify | Yelp API</p>
+
+    <button class="btn btn-info">
+      Share on Twitter
+        <ShareNetwork
+            network="twitter"
+            url="https://dev.d2m57z2t2gp150.amplifyapp.com/"
+            title="Hungry? Go check out Rumble for personalized food recommendations!"
+            description="I was just recommended these resturants">
+        </ShareNetwork>
+    </button>
     
   </div>
 </template>

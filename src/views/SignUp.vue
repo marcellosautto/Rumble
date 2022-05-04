@@ -73,8 +73,8 @@
               <label class="form-label" for="phone_number">Phone Number</label>
             </div>
 
-            <div class="d-flex justify-content-between align-items-center">
-              <!-- Checkbox -->
+            <!-- <div class="d-flex justify-content-between align-items-center">
+              Checkbox
               <div class="form-check mb-0">
                 <input
                   class="form-check-input me-2"
@@ -87,7 +87,7 @@
                 </label>
               </div>
               <a href="#!" class="text-body">Forgot password?</a>
-            </div>
+            </div>-->
 
             <div class="text-center text-lg-start mt-4 pt-2">
               <button

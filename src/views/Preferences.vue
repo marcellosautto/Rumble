@@ -57,34 +57,59 @@
   </div>
 
   <div class="btn__container">
-    <button class="create__rec__btn" @click="createDiningPreference()">
+    <button class="btn btn-primary" @click="createDiningPreference()">
       Create Preference
     </button>
 
-    <button class="del__rec__btn" @click="clearDiningPreferences()">
+    <!-- <button class="del__rec__btn" @click="clearDiningPreferences()">
       Clear Preferences
-    </button>
+    </button> -->
   </div>
 
   <div class="seperator"></div>
 
   <h3 class="text-center">List of Preferences</h3>
 
-  <div
-    v-for="(diningpreference, i) in diningpreferences"
-    :key="i"
-    class="preference_list"
-    role="button"
-    @click="openRecommendations(diningpreference)"
-  >
-    <div class="cursor-pointer preference_item">
-      {{ diningpreference.category }}
+  <div class="container preference_list">
+    <div class="row">
+      <div
+        class="col-sm-3 card"
+        style="width: 18rem"
+        v-for="diningpreference in diningpreferences"
+        :key="diningpreference"
+      >
+        <div class="card-body">
+          <h4
+            class="card-title"
+            style="font-weight: "
+            role="button"
+            @click="openRecommendations(diningpreference)"
+          >
+            {{ diningpreference.category }}
+          </h4>
+          <p class="card-text" style="font-style: italic">
+            {{ diningpreference.location }}
+          </p>
+          <button
+            @click="updateDiningPreference(diningpreference.id)"
+            class="card-link btn btn-info"
+          >
+            Update
+          </button>
+          <button
+            @click="deleteDiningPreference(diningpreference.id)"
+            class="card-link btn btn-danger"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 //import VueGoogleAutocomplete from "vue-google-autocomplete";
 export default {
   components: {
@@ -110,7 +135,8 @@ export default {
     async getYelpRecommendations() {
       var myHeaders = new Headers();
       myHeaders.append(
-        "Authorization", "Bearer 9mMmTKly_zcp7ACBIKuGgVZOvapY8rI3bvv-k39C5sz-ZCUCdpstKoe2N4LLWkDMUYT8fmimrgabuRQYaiJItY8CDP6Ub1bqQZCOz6kMEoo4ZmLqP6rbkePpj8lpYnYx",
+        "Authorization",
+        "Bearer 9mMmTKly_zcp7ACBIKuGgVZOvapY8rI3bvv-k39C5sz-ZCUCdpstKoe2N4LLWkDMUYT8fmimrgabuRQYaiJItY8CDP6Ub1bqQZCOz6kMEoo4ZmLqP6rbkePpj8lpYnYx"
       );
 
       var requestOptions = {
@@ -119,18 +145,17 @@ export default {
         redirect: "follow",
       };
 
-
       const response = await fetch(
-        this.hours == true ? `http://localhost:8080/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}&open_now=${this.hours}` : 
-        `http://localhost:8080/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}`,
+        this.hours == true
+          ? `http://localhost:8080/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}&open_now=${this.hours}`
+          : `http://localhost:8080/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}`,
         requestOptions
-      )
-        // .then((response) => response.json())
-        // .then((result) => console.log(result))
-        // .catch((error) => console.log("error", error));
+      );
+      // .then((response) => response.json())
+      // .then((result) => console.log(result))
+      // .catch((error) => console.log("error", error));
       const data = await response.json();
       return data;
-
     },
     async createDiningPreference() {
       this.error = "";
@@ -151,7 +176,7 @@ export default {
         limit: this.limit,
         price: this.price,
         location: this.location,
-        distance: this.distance*1609,
+        distance: this.distance * 1609,
         hours: this.hours,
         recommendation: await this.getYelpRecommendations(),
       };
@@ -161,12 +186,39 @@ export default {
         newDiningPreference
       );
     },
-    async deleteDiningPreference() {
-      this.$store.commit("diningPreferenceInfo/deleteDiningPreference");
+    async updateDiningPreference(diningPreferenceId) {
+      this.error = "";
+
+      if (
+        !this.category ||
+        !this.limit ||
+        !this.price ||
+        !this.location ||
+        !this.distance ||
+        !this.hours
+      ) {
+        return;
+      }
+
+      const updatedDiningPreference = {
+        id: diningPreferenceId,
+        category: this.category,
+        limit: this.limit,
+        price: this.price,
+        location: this.location,
+        distance: this.distance * 1609,
+        hours: this.hours,
+        recommendation: await this.getYelpRecommendations(),
+      };
+
+      this.$store.dispatch(
+        "diningPreferenceInfo/updateDiningPreference",
+        updatedDiningPreference
+      );
     },
-    async clearDiningPreferences() {
-      this.$store.commit("diningPreferenceInfo/resetState");
-    },
+    ...mapActions({
+      deleteDiningPreference: "diningPreferenceInfo/deleteDiningPreference",
+    }),
   },
 
   computed: {
@@ -179,7 +231,7 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crete+Round&display=swap");
 #title {
   position: sticky;
   text-align: center;
@@ -258,18 +310,41 @@ export default {
 }
 
 .preference_list {
-  background-color: rgb(173, 224, 194);
+  /* background-color: rgb(173, 224, 194); */
+
   width: 50%;
   margin: auto;
 }
 
 .preference_list:hover {
-  background-color: rgba(173, 224, 194, 0.691);
+  /* background-color: rgba(173, 224, 194, 0.691); */
 }
 
 .preference_item {
   margin: 5px;
   text-align: center;
+}
+
+.card {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(173, 224, 194),
+    rgb(119, 183, 146)
+  );
+  border: 2px solid whitesmoke;
+}
+
+.card-body {
+  text-align: center;
+}
+.card-body > h4 {
+  font-family: "Courier New", Courier, monospace;
+  text-decoration: underline;
+  font-family: "Crete Round", serif;
+}
+
+.card > h4:hover {
+  color: aqua;
 }
 
 .seperator {

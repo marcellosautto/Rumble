@@ -27,6 +27,7 @@
     "vue-place-autocomplete": "^0.5.3",
     "vue-places": "^2.2.2",
     "vue-router": "^4.0.12",
+    "vue-social-sharing": "^4.0.0-alpha4",
     "vue3-star-ratings": "^1.1.0",
     "vuex": "^4.0.2"
   },

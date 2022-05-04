@@ -11,10 +11,13 @@
         Distance: {{ (recommendation.distance / 1609).toFixed(2) }} Miles <br />
         Rating: {{ recommendation.rating }} / 5 <br />
         Price: {{ recommendation.price }}<br />
-        Phone Number: {{recommendation.display_phone}} <br />
-        <h6 :class="!recommendation.is_closed ? 'open' : 'closed'">Open Now</h6> <br />
+        Phone Number: {{ recommendation.display_phone }} <br />
+        <h6 :class="!recommendation.is_closed ? 'open' : 'closed'">Open Now</h6>
+        <br />
       </span>
     </div>
+
+
   </div>
 </template>
 
