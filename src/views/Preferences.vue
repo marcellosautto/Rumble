@@ -125,6 +125,7 @@ export default {
     location: "San Jose",
     distance: 10,
     hours: "true",
+    domain = location.protocol + '//' + location.host,
     token:
       "9mMmTKly_zcp7ACBIKuGgVZOvapY8rI3bvv-k39C5sz-ZCUCdpstKoe2N4LLWkDMUYT8fmimrgabuRQYaiJItY8CDP6Ub1bqQZCOz6kMEoo4ZmLqP6rbkePpj8lpYnYx",
   }),
@@ -147,8 +148,8 @@ export default {
 
       const response = await fetch(
         this.hours == true
-          ? `http://localhost:8080/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}&open_now=${this.hours}`
-          : `http://localhost:8080/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}`,
+          ? `${this.domain}/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}&open_now=${this.hours}`
+          : `${this.domain}/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}`,
         requestOptions
       );
       // .then((response) => response.json())
