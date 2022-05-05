@@ -125,7 +125,7 @@ export default {
     location: "San Jose",
     distance: 10,
     hours: "true",
-    domain = location.protocol + '//' + location.host,
+    domain: `${location.protocol}//${location.host}`,
     token:
       "9mMmTKly_zcp7ACBIKuGgVZOvapY8rI3bvv-k39C5sz-ZCUCdpstKoe2N4LLWkDMUYT8fmimrgabuRQYaiJItY8CDP6Ub1bqQZCOz6kMEoo4ZmLqP6rbkePpj8lpYnYx",
   }),
