@@ -13,11 +13,11 @@
     <h2>Example...</h2>
     <div class="examples">
       <img
-        src="../assets/images/about-p1.jpg"
+        src="../assets/images/about-p1.png"
         alt="Preview of preference selection interface"
       />
       <img
-        src="../assets/images/about-p2.jpg"
+        src="../assets/images/about-p2.png"
         alt="Preview of preference selection interface"
       />
     </div>
