@@ -17,18 +17,20 @@ Amplify.configure(awsconfig);
 <script>
 import Sidebar from "./components/Sidebar/Sidebar.vue";
 import { sidebarWidth } from "./components/Sidebar/state.ts";
-import { mapActions } from "vuex";
+//import { mapActions } from "vuex";
+import User from './models/User'
 
 export default {
   name: "App",
   mounted() {
-    this.authAction();
+    //this.authAction();
+    User.dispatch("authAction")
   },
   setup() {
     return { sidebarWidth };
   },
   methods: {
-    ...mapActions("auth", ["authAction"]),
+    //...mapActions("auth", ["authAction"]),
   },
   components: {
     Sidebar,

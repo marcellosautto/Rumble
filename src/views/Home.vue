@@ -36,7 +36,7 @@
 
     <p>Vue.js | GraphQL | Babel | Vuex | AWS Amplify | Yelp API</p>
 
-    <button class="btn btn-info">
+    <!-- <button class="btn btn-info">
       Share on Twitter
         <ShareNetwork
             network="twitter"
@@ -44,7 +44,7 @@
             title="Hungry? Go check out Rumble for personalized food recommendations!"
             description="I was just recommended these resturants">
         </ShareNetwork>
-    </button>
+    </button> -->
     
   </div>
 </template>

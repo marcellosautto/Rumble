@@ -155,6 +155,8 @@
 </template>
 
 <script>
+import User from "@/models/User";
+
 export default {
   data: () => ({
     username: "",
@@ -176,7 +178,7 @@ export default {
       )
         return;
       try {
-        await this.$store.dispatch("auth/signUp", {
+        await User.dispatch("auth/signUp", {
           username: this.username,
           password: this.password,
           email: this.email,
@@ -194,12 +196,12 @@ export default {
         return;
       }
       try {
-        await this.$store.dispatch("auth/confirmSignUp", {
+        await User.dispatch("confirmSignUp", {
           username: this.username,
           code: this.code,
         });
 
-        await this.$store.dispatch("auth/login", {
+        await User.dispatch("login", {
           username: this.username,
           password: this.password,
         });

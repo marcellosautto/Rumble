@@ -10,21 +10,21 @@
     <SidebarLink to="/" icon="fas fa-home" v-if="user">Home</SidebarLink>
 
     <!-- <SidebarLink to="/about" icon="fas fa-image" v-if="user">About</SidebarLink> -->
-    <SidebarLink to="/diningpreferences" icon="fas fa-list-alt" v-if="user"
+    <SidebarLink to="/diningpreferences" icon="fas fa-list-alt" v-if="this.user"
       >Preferences</SidebarLink
     >
-    <SidebarLink to="/eateryList" icon="fas fa-cutlery" v-if="user"
+    <SidebarLink to="/eateryList" icon="fas fa-cutlery" v-if="this.user"
       >Eatery List</SidebarLink
     >
-    <SidebarLink to="/signin" icon="fas fa-user-alt" v-if="!user"
+    <SidebarLink to="/signin" icon="fas fa-user-alt" v-if="!this.user"
       >Sign In
     </SidebarLink>
 
-    <SidebarLink to="" icon="fas fa-user-alt" v-if="user"
-      >Welcome {{ user.username }}
+    <SidebarLink to="" icon="fas fa-user-alt" v-if="this.user"
+      >Welcome {{ this.user.username }}
     </SidebarLink>
 
-    <SidebarLink to="" icon="fas fa-user-alt" @click="logout" v-if="user"
+    <SidebarLink to="" icon="fas fa-user-alt" @click="logout" v-if="this.user"
       >Log Out
     </SidebarLink>
 
@@ -41,7 +41,8 @@
 <script>
 import SidebarLink from "./SidebarLink.vue";
 import { collapsed, toggleSidebar, sidebarWidth } from "./state.ts";
-import { mapGetters } from "vuex";
+//import { mapGetters } from "vuex";
+import User from "@/models/User"
 
 export default {
   props: {},
@@ -51,14 +52,17 @@ export default {
   },
   methods: {
     async logout() {
-      await this.$store.dispatch("auth/logout");
+      await User.dispatch("logout");
       this.$router.push("/signin");
     },
   },
   computed: {
-    ...mapGetters({
-      user: "auth/user",
-    }),
+    user (){
+      return this.$store.state.entities.users.user
+    },
+    // ...mapGetters({
+    //   user: "auth/user",
+    // }),
   },
 };
 </script>
