@@ -90,7 +90,15 @@
       </div>
     </div>
     <div
-      class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-dark"
+      class="
+        d-flex
+        flex-column flex-md-row
+        text-center text-md-start
+        justify-content-between
+        py-4
+        px-4 px-xl-5
+        bg-dark
+      "
     >
       <!-- Copyright -->
       <div class="text-white mb-3 mb-md-0">
@@ -129,8 +137,8 @@ Amplify.configure(awsconfig);
 </script> -->
 
 <script>
-import { mapActions } from "vuex"; //allows for cleaner communication with vuex store
-
+//import { mapActions } from "vuex"; //allows for cleaner communication with vuex store
+import User from "@/models/User";
 export default {
   data: () => ({
     username: "",
@@ -139,12 +147,12 @@ export default {
     error: "",
   }),
   methods: {
-    ...mapActions({
-      loginVue: "auth/login",
-    }),
-async login() {
+    // ...mapActions({
+    //   loginVue: "auth/login",
+    // }),
+    async login() {
       try {
-        await this.loginVue({
+        await User.dispatch("login", {
           username: this.username,
           password: this.password,
         });
@@ -166,7 +174,7 @@ async login() {
   text-align: right;
 }
 
-.error-text{
+.error-text {
   color: red;
 }
 

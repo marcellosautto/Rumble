@@ -16,12 +16,12 @@
         <br />
       </span>
     </div>
-
-
   </div>
 </template>
 
 <script>
+import DiningPreference from "@/models/DiningPreference";
+
 export default {
   mounted() {
     this.getRecommendations();
@@ -49,8 +49,8 @@ export default {
     //   }
     // },
     async getRecommendations() {
-      const preference = await this.$store.dispatch(
-        "diningPreferenceInfo/getDiningPreference",
+      const preference = await DiningPreference.dispatch(
+        "getDiningPreference",
         this.id
       );
       this.recommendations =

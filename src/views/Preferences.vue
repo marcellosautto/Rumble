@@ -75,7 +75,7 @@
       <div
         class="col-sm-3 card"
         style="width: 18rem"
-        v-for="diningpreference in diningpreferences"
+        v-for="diningpreference in this.diningpreferences"
         :key="diningpreference"
       >
         <div class="card-body">
@@ -109,14 +109,15 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-//import VueGoogleAutocomplete from "vue-google-autocomplete";
+
+import DiningPreference from "@/models/DiningPreference";
+
 export default {
   components: {
     //VueGoogleAutocomplete,
   },
   async mounted() {
-    this.$store.dispatch("diningPreferenceInfo/getDiningPreferencesData");
+    DiningPreference.dispatch("getDiningPreferencesData");
   },
   data: () => ({
     category: "",
@@ -182,10 +183,17 @@ export default {
         recommendation: await this.getYelpRecommendations(),
       };
 
-      this.$store.dispatch(
-        "diningPreferenceInfo/createDiningPreference",
-        newDiningPreference
-      );
+      console.log(newDiningPreference);
+
+      DiningPreference.dispatch("createDiningPreference", {
+        category: this.category,
+        limit: this.limit,
+        price: this.price,
+        location: this.location,
+        distance: this.distance * 1609,
+        hours: this.hours,
+        recommendation: await this.getYelpRecommendations(),
+      });
     },
     async updateDiningPreference(diningPreferenceId) {
       this.error = "";
@@ -201,7 +209,7 @@ export default {
         return;
       }
 
-      const updatedDiningPreference = {
+      DiningPreference.dispatch("updateDiningPreference", {
         id: diningPreferenceId,
         category: this.category,
         limit: this.limit,
@@ -210,23 +218,24 @@ export default {
         distance: this.distance * 1609,
         hours: this.hours,
         recommendation: await this.getYelpRecommendations(),
-      };
-
-      this.$store.dispatch(
-        "diningPreferenceInfo/updateDiningPreference",
-        updatedDiningPreference
-      );
+      });
     },
-    ...mapActions({
-      deleteDiningPreference: "diningPreferenceInfo/deleteDiningPreference",
-    }),
+    async deleteDiningPreference(id) {
+      DiningPreference.dispatch("deleteDiningPreference", id);
+    },
   },
 
   computed: {
-    ...mapGetters({
-      user: "auth/user",
-      diningpreferences: "diningPreferenceInfo/diningpreferences",
-    }),
+    user() {
+      return this.$store.state.entities.users.user;
+    },
+    diningpreferences() {
+      return this.$store.state.entities.diningPreferences.diningpreferences;
+    },
+    // ...mapGetters({
+    //   user: "auth/user",
+    //   diningpreferences: "diningPreferenceInfo/diningpreferences"
+    // }),
   },
 };
 </script>
