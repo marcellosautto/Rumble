@@ -123,7 +123,7 @@ export default {
     category: "",
     limit: 1,
     price: "2",
-    location: "San Diego",
+    location: "San Jose",
     distance: 10,
     hours: "true",
     domain: `${location.protocol}//${location.host}`,
