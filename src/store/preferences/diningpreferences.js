@@ -43,7 +43,7 @@ export const diningPreferenceInfo = {
       try {
         await API.graphql(
           graphqlOperation(createDiningPreferenceMutation, {
-            input: newPreference,
+            input: newPreference
           })
         );
 

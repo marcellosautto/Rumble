@@ -7,7 +7,7 @@
         v-for="recommendation in recommendations"
         :key="recommendation.name"
       >
-        Name: {{ recommendation.name }} <br />
+        <a :href="recommendation.url">Name: {{ recommendation.name }} </a><br />
         Distance: {{ (recommendation.distance / 1609).toFixed(2) }} Miles <br />
         Rating: {{ recommendation.rating }} / 5 <br />
         Price: {{ recommendation.price }}<br />
@@ -27,35 +27,19 @@ export default {
     this.getRecommendations();
   },
   data: () => ({
-    recommendations: [],
-    preferenceCategory: "",
+    recommendations: []
   }),
   methods: {
-    // async onFileChange(file) {
-    //   if (!file.target || !file.target.files[0]) {
-    //     return;
-    //   }
-    //   try {
-    //     await this.$store.dispatch(
-    //       "diningPreferenceInfo/createRecommendation",
-    //       {
-    //         file: file.target.files[0],
-    //         id: this.id,
-    //       }
-    //     );
-    //     this.getRecommendations();
-    //   } catch (error) {
-    //     console.log("Error create recommendation", error);
-    //   }
-    // },
-    async getRecommendations() {
+    async getRecommendations() { //NOT WORKING
       const preference = await DiningPreference.dispatch(
         "getDiningPreference",
         this.id
       );
       this.recommendations =
         preference.data.getDiningPreference.recommendation.businesses;
-      this.preferenceCategory = preference.data.getDiningPreference.category;
+
+      console.log(this.recommendations)
+      
     },
   },
   computed: {

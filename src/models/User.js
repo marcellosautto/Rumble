@@ -1,5 +1,5 @@
 import {Model} from '@vuex-orm/core'
-//import DiningPreference from './DiningPreference'
+import DiningPreference from './DiningPreference'
 import Attribute from './Attribute'
 export default class User extends Model {
     static entity = 'users'
@@ -11,14 +11,14 @@ export default class User extends Model {
             username: this.string(""), 
             password: this.string(""), 
             attributes: this.hasOne(Attribute, 'email'),
-            //diningPreferences: this.hasMany(DiningPreference, 'id')
+            diningPreferences: this.hasMany(DiningPreference, 'id')
         }
     }
 
-    // static state ()  {
-    //     return {
-    //       user: null
-    //     }
-    //   }
+    static state ()  {
+        return {
+          user: null
+        }
+      }
 }
 

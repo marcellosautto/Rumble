@@ -4,17 +4,18 @@
     <div class="rf_input">
       <label for="category" class="subhead">Category </label> <br />
       <select v-model="category" name="category" id="category" required>
-        <option value="Bistros">Bistros</option>
+        <option value="Burgers">Burgers</option>
         <option value="Barbeque">Barbeque</option>
         <option value="Cafes">Cafes</option>
         <option value="Chinese">Chinese</option>
         <option value="Indian">Indian</option>
         <option value="Italian">Italian</option>
         <option value="Sushi">Sushi</option>
-        <option value="Mexican">Mexican</option>
+        <option value="mexican">Mexican</option>
         <option value="Pizza">Pizza</option>
         <option value="Sandwiches">Sandwiches</option>
         <option value="Thai">Thai</option>
+        <option value="Vegan">Vegan</option>
       </select>
       <br />
     </div>
@@ -109,7 +110,6 @@
 </template>
 
 <script>
-
 import DiningPreference from "@/models/DiningPreference";
 
 export default {
@@ -126,9 +126,9 @@ export default {
     location: "San Jose",
     distance: 10,
     hours: "true",
-    domain: `${location.protocol}//${location.host}`,
+    domain: location.origin,
     token:
-      "9mMmTKly_zcp7ACBIKuGgVZOvapY8rI3bvv-k39C5sz-ZCUCdpstKoe2N4LLWkDMUYT8fmimrgabuRQYaiJItY8CDP6Ub1bqQZCOz6kMEoo4ZmLqP6rbkePpj8lpYnYx",
+      "5c-roHcuxsk7iVlpG06WEaWT9flW2ndC5RZorQNexsfRCD-gTTazuCiIyKXlwz-tILe4Y2viD_fqepfQmKLc9fQusP_8WvVyGHDp6Id1asoe5C1SPocqimycCtB1YnYx",
   }),
   methods: {
     openRecommendations(diningPreference) {
@@ -138,8 +138,13 @@ export default {
       var myHeaders = new Headers();
       myHeaders.append(
         "Authorization",
-        "Bearer 9mMmTKly_zcp7ACBIKuGgVZOvapY8rI3bvv-k39C5sz-ZCUCdpstKoe2N4LLWkDMUYT8fmimrgabuRQYaiJItY8CDP6Ub1bqQZCOz6kMEoo4ZmLqP6rbkePpj8lpYnYx"
+        "Bearer 5c-roHcuxsk7iVlpG06WEaWT9flW2ndC5RZorQNexsfRCD-gTTazuCiIyKXlwz-tILe4Y2viD_fqepfQmKLc9fQusP_8WvVyGHDp6Id1asoe5C1SPocqimycCtB1YnYx",
       );
+
+      myHeaders.append(
+        "Accept",
+        "application/json"
+      )
 
       var requestOptions = {
         method: "GET",
@@ -152,10 +157,10 @@ export default {
           ? `${this.domain}/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}&open_now=${this.hours}`
           : `${this.domain}/v3/businesses/search?categories=${this.category}&location=${this.location}&limit=${this.limit}&radius=${this.distance}&price=${this.price}`,
         requestOptions
-      );
-      // .then((response) => response.json())
-      // .then((result) => console.log(result))
-      // .catch((error) => console.log("error", error));
+      )
+        // .then((response) => response.json())
+        // .then((result) => console.log(result))
+        // .catch((error) => console.log("error", error));
       const data = await response.json();
       return data;
     },
@@ -173,17 +178,17 @@ export default {
         return;
       }
 
-      const newDiningPreference = {
-        category: this.category,
-        limit: this.limit,
-        price: this.price,
-        location: this.location,
-        distance: this.distance * 1609,
-        hours: this.hours,
-        recommendation: await this.getYelpRecommendations(),
-      };
+      // const newDiningPreference = {
+      //   category: this.category,
+      //   limit: this.limit,
+      //   price: this.price,
+      //   location: this.location,
+      //   distance: this.distance * 1609,
+      //   hours: this.hours,
+      //   recommendation: await this.getYelpRecommendations(),
+      // };
 
-      console.log(newDiningPreference);
+      // console.log(newDiningPreference);
 
       DiningPreference.dispatch("createDiningPreference", {
         category: this.category,
@@ -224,7 +229,6 @@ export default {
       DiningPreference.dispatch("deleteDiningPreference", id);
     },
   },
-
   computed: {
     user() {
       return this.$store.state.entities.users.user;
@@ -232,10 +236,6 @@ export default {
     diningpreferences() {
       return this.$store.state.entities.diningPreferences.diningpreferences;
     },
-    // ...mapGetters({
-    //   user: "auth/user",
-    //   diningpreferences: "diningPreferenceInfo/diningpreferences"
-    // }),
   },
 };
 </script>
