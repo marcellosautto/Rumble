@@ -178,7 +178,7 @@ export default {
       )
         return;
       try {
-        await User.dispatch("auth/signUp", {
+        await User.dispatch("signUp", {
           username: this.username,
           password: this.password,
           email: this.email,

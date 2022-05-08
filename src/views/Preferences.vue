@@ -124,7 +124,7 @@ export default {
     limit: 1,
     price: "2",
     location: "San Jose",
-    distance: 10,
+    distance: 25,
     hours: "true",
     domain: location.origin,
     token:
@@ -190,12 +190,14 @@ export default {
 
       // console.log(newDiningPreference);
 
+      const distMiles = this.distance * 1609
+
       DiningPreference.dispatch("createDiningPreference", {
         category: this.category,
         limit: this.limit,
         price: this.price,
         location: this.location,
-        distance: this.distance * 1609,
+        distance: distMiles,
         hours: this.hours,
         recommendation: await this.getYelpRecommendations(),
       });
@@ -214,13 +216,15 @@ export default {
         return;
       }
 
+      const distMiles = this.distance * 1609
+
       DiningPreference.dispatch("updateDiningPreference", {
         id: diningPreferenceId,
         category: this.category,
         limit: this.limit,
         price: this.price,
         location: this.location,
-        distance: this.distance * 1609,
+        distance: distMiles,
         hours: this.hours,
         recommendation: await this.getYelpRecommendations(),
       });
