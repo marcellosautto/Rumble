@@ -1,23 +1,6 @@
 {
-  "api": {
-    "rumble": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 14
-            }
-          },
-          "additionalAuthenticationProviders": []
-        }
-      }
-    }
-  },
   "auth": {
-    "rumbleec89696c": {
+    "rumble8b51820b": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -26,9 +9,7 @@
         "socialProviders": [],
         "usernameAttributes": [],
         "signupAttributes": [
-          "BIRTHDATE",
-          "EMAIL",
-          "PHONE_NUMBER"
+          "EMAIL"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
@@ -44,18 +25,30 @@
       }
     }
   },
-  "hosting": {
-    "amplifyhosting": {
-      "service": "amplifyhosting",
+  "api": {
+    "rumble": {
+      "service": "AppSync",
       "providerPlugin": "awscloudformation",
-      "type": "manual"
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
     }
   },
-  "storage": {
-    "rumblediningpreferences": {
-      "service": "S3",
+  "function": {
+    "S3Trigger3ed6cb49": {
+      "service": "Lambda",
       "providerPlugin": "awscloudformation",
-      "dependsOn": []
+      "build": true
     }
-  }
+  },
+  "storage": {}
 }

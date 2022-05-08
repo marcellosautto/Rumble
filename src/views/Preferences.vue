@@ -190,14 +190,14 @@ export default {
 
       // console.log(newDiningPreference);
 
-      const distMiles = this.distance * 1609
+      this.distance*=1609
 
       DiningPreference.dispatch("createDiningPreference", {
         category: this.category,
         limit: this.limit,
         price: this.price,
         location: this.location,
-        distance: distMiles,
+        distance: this.distance,
         hours: this.hours,
         recommendation: await this.getYelpRecommendations(),
       });
@@ -216,7 +216,7 @@ export default {
         return;
       }
 
-      const distMiles = this.distance * 1609
+      this.distance *= 1609
 
       DiningPreference.dispatch("updateDiningPreference", {
         id: diningPreferenceId,
@@ -224,7 +224,7 @@ export default {
         limit: this.limit,
         price: this.price,
         location: this.location,
-        distance: distMiles,
+        distance: this.distance,
         hours: this.hours,
         recommendation: await this.getYelpRecommendations(),
       });

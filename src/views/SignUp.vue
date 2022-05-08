@@ -62,7 +62,7 @@
             </div>
 
             <!-- Phone Number input -->
-            <div class="form-outline mb-3" v-if="!confirmPassword">
+            <!-- <div class="form-outline mb-3" v-if="!confirmPassword">
               <input
                 type="tel"
                 id="phone_number"
@@ -71,7 +71,7 @@
                 v-model="phone_number"
               />
               <label class="form-label" for="phone_number">Phone Number</label>
-            </div>
+            </div> -->
 
             <!-- <div class="d-flex justify-content-between align-items-center">
               Checkbox
@@ -99,7 +99,7 @@
             </div>
           </form>
           <div class="error-text">{{ error.message }}</div>
-          <form v-if="confirmPassword">
+          <div v-if="confirmPassword">
             <!-- Code input -->
             <div class="form-outline mb-3" v-if="confirmPassword">
               <input
@@ -121,7 +121,7 @@
                 Confirm Sign Up
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
@@ -164,7 +164,6 @@ export default {
     confirmPassword: false,
     email: "",
     birthdate: "",
-    phone_number: "",
     error: "",
     code: "",
   }),
@@ -173,8 +172,7 @@ export default {
       if (
         !this.email ||
         !this.password ||
-        !this.birthdate ||
-        !this.phone_number
+        !this.birthdate
       )
         return;
       try {
@@ -183,7 +181,6 @@ export default {
           password: this.password,
           email: this.email,
           birthdate: this.birthdate,
-          phone_number: this.phone_number,
         });
 
         this.confirmPassword = true;
@@ -195,6 +192,7 @@ export default {
       if (!this.username || !this.code) {
         return;
       }
+      
       try {
         await User.dispatch("confirmSignUp", {
           username: this.username,
@@ -206,7 +204,7 @@ export default {
           password: this.password,
         });
 
-        this.$router.push("/");
+        this.$router.push("/diningpreferences");
       } catch (error) {
         console.log(error);
         this.error = error;

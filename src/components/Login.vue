@@ -147,9 +147,6 @@ export default {
     error: "",
   }),
   methods: {
-    // ...mapActions({
-    //   loginVue: "auth/login",
-    // }),
     async login() {
       try {
         await User.dispatch("login", {

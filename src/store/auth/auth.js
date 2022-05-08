@@ -32,7 +32,7 @@ export const auth = {
                 return Promise.reject(error);
             }
         },
-        async confirmSignUp(_, { username, code }) {
+        async confirmSignUp(_ ,{username, code} ) {
             try {
                 await Auth.confirmSignUp(username, code);
                 return Promise.resolve();
@@ -43,18 +43,17 @@ export const auth = {
 
             }
         },
-        async signUp(_, { username, password, email, birthdate, phone_number }) {
+        async signUp(_, { username, password, email, birthdate }) {
             try {
                 await Auth.signUp({
                     username,
                     password,
                     attributes: {
                         email,
-                        birthdate,
-                        phone_number
+                        birthdate
                     }
-                })
-                return Promise.resolve();
+                });
+                return Promise.resolve("Success");
 
             } catch (error) {
                 console.log(error);

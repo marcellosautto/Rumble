@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "rumble",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "D:\\AWS\\rumble\\amplify\\backend\\api\\rumble\\schema.graphql",
+    "gqlSchemaPath": "/Users/marcellosautto/Desktop/Code/Rumble/amplify/backend/api/rumble/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "expirationTime": 7

@@ -8,68 +8,40 @@ import SignUp from "../views/SignUp.vue";
 import SignIn from "../views/SignIn.vue";
 import { Auth } from 'aws-amplify';
 
-// import Vue from 'vue'
-// import VueRouter from 'vue-router'
-
-// Vue.use(VueRouter)
-
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {requiresAuth: false}
   },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: About,
-  //   meta: {requiresAuth: false}
-  // },
   {
     path: '/diningpreferences',
     name: 'Preferences',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: Preferences,
     meta: {requiresAuth: true}
   },
   {
     path: '/diningpreferences/:id',
     name: 'Recommendations',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: Recommendations,
     meta: {requiresAuth: true}
   },
   {
     path: '/eaterylist',
     name: 'EateryList',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: EateryList,
     meta: {requiresAuth: true}
   },
   {
     path: '/signin',
     name: 'SignIn',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: SignIn,
     meta: {requiresAuth: false}
   },
   {
     path: '/signup',
     name: 'SignUp',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: SignUp,
     meta: {requiresAuth: false}
   }
