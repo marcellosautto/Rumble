@@ -23,7 +23,11 @@
           :key="i"
           :class="i == 0 ? 'carousel-item active' : 'carousel-item'"
         >
-          <img :src="photo" class="d-block w-100" alt="Images of a resturant" />
+          <img
+            :src="photo"
+            class="carousel-img d-block w-100"
+            alt="Images of a resturant"
+          />
         </div>
       </div>
       <button
@@ -58,30 +62,30 @@ export default {
   mounted() {
     var myCarousel = document.querySelector("#myCarousel");
     new Bootstrap.Carousel(myCarousel);
-    DiningPreference.dispatch("getDiningPreferencesData")
+    DiningPreference.dispatch("getDiningPreferencesData");
     this.getRecommendationImages();
   },
   data: () => ({
     gallery: [],
   }),
   methods: {
- async getRecommendationImages() {
+    async getRecommendationImages() {
       //console.log(this.diningPreferences)
-      this.diningPreferences.forEach(async preference => {
-      const det_preference = await DiningPreference.dispatch(
-        "getDiningPreference",
-        preference['id']
-      );
+      this.diningPreferences.forEach(async (preference) => {
+        const det_preference = await DiningPreference.dispatch(
+          "getDiningPreference",
+          preference["id"]
+        );
         //console.log(preference['id'])
         //console.log(det_preference)
         const recommendations =
-        det_preference.data.getDiningPreference.recommendation.businesses;
+          det_preference.data.getDiningPreference.recommendation.businesses;
         //console.log(recommendations)
-        recommendations.forEach(business => {
-          this.gallery.push(business.image_url)
+        recommendations.forEach((business) => {
+          this.gallery.push(business.image_url);
         });
       });
-      console.log(this.gallery)
+      console.log(this.gallery);
     },
   },
   computed: {
@@ -100,6 +104,13 @@ export default {
   width: 50%;
   height: 50%;
   margin: auto;
+}
+
+.carousel-img {
+  float: left;
+  width: 200px;
+  height: 500px;
+  object-fit: cover;
 }
 
 .title {

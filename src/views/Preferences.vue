@@ -11,7 +11,7 @@
         <option value="Indian">Indian</option>
         <option value="Italian">Italian</option>
         <option value="Sushi">Sushi</option>
-        <option value="mexican">Mexican</option>
+        <option value="Mexican">Mexican</option>
         <option value="Pizza">Pizza</option>
         <option value="Sandwiches">Sandwiches</option>
         <option value="Thai">Thai</option>
@@ -44,7 +44,7 @@
       <input type="text" v-model="location" placeholder="Ex. Westlake" /><br />
     </div>
     <div class="rf_input">
-      <label for="distance" class="subhead">Search Radius (in Miles) </label
+      <label for="distance" class="subhead">Search Radius (Max. 20 Miles) </label
       ><br />
       <input type="text" v-model="distance" placeholder="Ex. 5" /><br />
     </div>
@@ -124,7 +124,7 @@ export default {
     limit: 1,
     price: "2",
     location: "San Jose",
-    distance: 25,
+    distance: 20,
     hours: "true",
     domain: location.origin,
     token:
@@ -133,6 +133,9 @@ export default {
   methods: {
     openRecommendations(diningPreference) {
       this.$router.push(`/diningpreferences/${diningPreference.id}`);
+    },
+    clearData(){
+      this.category = this.limit = this.price = this.location = this.distance = this.hours = null
     },
     async getYelpRecommendations() {
       var myHeaders = new Headers();
@@ -201,6 +204,8 @@ export default {
         hours: this.hours,
         recommendation: await this.getYelpRecommendations(),
       });
+
+      this.clearData()
     },
     async updateDiningPreference(diningPreferenceId) {
       this.error = "";
@@ -228,6 +233,8 @@ export default {
         hours: this.hours,
         recommendation: await this.getYelpRecommendations(),
       });
+
+      this.clearData()
     },
     async deleteDiningPreference(id) {
       DiningPreference.dispatch("deleteDiningPreference", id);
