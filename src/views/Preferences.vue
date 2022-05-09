@@ -74,7 +74,7 @@
   <div class="container preference_list">
     <div class="row">
       <div
-        class="col-sm-3 card"
+        class="col card"
         style="width: 18rem"
         v-for="diningpreference in this.diningpreferences"
         :key="diningpreference"

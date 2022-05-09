@@ -1,15 +1,4 @@
 export type AmplifyDependentResourcesAttributes = {
-    "auth": {
-        "rumble8b51820b": {
-            "IdentityPoolId": "string",
-            "IdentityPoolName": "string",
-            "UserPoolId": "string",
-            "UserPoolArn": "string",
-            "UserPoolName": "string",
-            "AppClientIDWeb": "string",
-            "AppClientID": "string"
-        }
-    },
     "api": {
         "rumble": {
             "GraphQLAPIKeyOutput": "string",

@@ -6,7 +6,7 @@
       <span
         v-for="recommendation in recommendations"
         :key="recommendation.name"
-        class="col col-sm-3"
+        class="col col-sm-6 col-md-3"
       >
         <div class="card" style="width: 18rem">
           <img :src="recommendation.image_url" class="card-img-top" alt="..." />
@@ -23,18 +23,6 @@
             <a :href="recommendation.url" class="btn btn-primary"
               >Check It Out!</a
             >
-            <button class="btn btn-info">
-              <ShareNetwork
-                network="twitter"
-                url="https://news.vuejs.org/issues/180"
-                title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
-                description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
-                quote="The hot reload is so fast it\'s near instant. - Evan You"
-                hashtags="vuejs,vite"
-              >
-                Share on Twitter
-              </ShareNetwork>
-            </button>
           </div>
         </div>
 
@@ -81,6 +69,10 @@ export default {
   width: 200px;
   height: 200px;
   object-fit: cover;
+}
+
+.share-btn > a{
+  text-decoration: none;
 }
 
 .open {
