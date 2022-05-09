@@ -20,7 +20,7 @@
       <br />
     </div>
     <div class="rf_input">
-      <label for="limit" class="subhead">List Limit (Max. 10)</label><br />
+      <label for="limit" class="subhead">List Limit (Recommended: 8)</label><br />
       <input type="text" v-model="limit" placeholder="Ex. 5" /><br />
     </div>
     <div class="rf_input">
@@ -44,7 +44,7 @@
       <input type="text" v-model="location" placeholder="Ex. Westlake" /><br />
     </div>
     <div class="rf_input">
-      <label for="distance" class="subhead">Search Radius (Max. 20 Miles) </label
+      <label for="distance" class="subhead">Search Radius (Max. 24 Miles) </label
       ><br />
       <input type="text" v-model="distance" placeholder="Ex. 5" /><br />
     </div>
@@ -124,7 +124,7 @@ export default {
     limit: 1,
     price: "2",
     location: "San Jose",
-    distance: 20,
+    distance: 15,
     hours: "true",
     domain: location.origin,
     token:
