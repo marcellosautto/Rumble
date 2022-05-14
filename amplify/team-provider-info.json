@@ -18,7 +18,7 @@
       "function": {
         "S3Trigger3ed6cb49": {
           "deploymentBucketName": "amplify-rumble-dev-210822-deployment",
-          "s3Key": "amplify-builds/S3Trigger3ed6cb49-4371364c617579473444-build.zip"
+          "s3Key": "amplify-builds/S3Trigger3ed6cb49-72455156466668313776-build.zip"
         }
       }
     }
