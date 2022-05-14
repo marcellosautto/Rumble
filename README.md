@@ -11,7 +11,7 @@ The application utilizes the Yelp API, specifically the business search endpoint
 <img src="https://github.com/marcellosautto/Rumble/blob/master/src/assets/images/about-p2.png?raw=true" alt="drawing" width="500"/>
 
 ## How to Deploy
-1. Clone the repository using `git clone https://github.com/marcellosautto/Rumble.git</clone`
+1. Clone the repository using `git clone https://github.com/marcellosautto/Rumble.git`
 
 2. Navigate to the repository directory in your terminal
 3. Run `docker-compose up`
