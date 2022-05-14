@@ -7,8 +7,8 @@ the API will return a list of eateries which best fit those preferences
 ## How Does Rumble Work?
 The application utilizes the Yelp API, specifically the business search endpoint, to make a GET request with the paramaters inserted by the user.
 
-<img src="https://github.com/marcellosautto/Rumble/blob/master/src/assets/images/about-p1.png?raw=true" alt="drawing" width="500"/>
-<img src="https://github.com/marcellosautto/Rumble/blob/master/src/assets/images/about-p2.png?raw=true" alt="drawing" width="500"/>
+<img src="https://github.com/marcellosautto/Rumble/blob/master/src/assets/images/about-p1.png?raw=true" alt="drawing" width="750"/>
+<img src="https://github.com/marcellosautto/Rumble/blob/master/src/assets/images/about-p2.png?raw=true" alt="drawing" width="750"/>
 
 ## How to Deploy
 1. Clone the repository using `git clone https://github.com/marcellosautto/Rumble.git`
